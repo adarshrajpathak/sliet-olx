@@ -1,52 +1,58 @@
 import React from "react";
 import "./Navbar.css";
 import MyButton from "./Button/Button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const handleClick = () => {
-    alert("Login & Shop");
+  const navigate = useNavigate();
+
+  const handleClick = (path) => {
+    navigate(path); // Navigate to the specified path
   };
+
   return (
     <nav className="navbar">
       <div className="logo">SLIET OLX</div>
-     
-     <div >
+
+      <div>
         <MyButton
           variant="outlined"
           color="secondary"
           size="large"
-          onClick={handleClick}
+          onClick={() => handleClick("/sellresp")}  // Navigate to /buyclick
         >
           Buy Request
         </MyButton>
-      </div> 
-      <div >
+      </div>
+
+      <div>
         <MyButton
           variant="outlined"
           color="secondary"
           size="large"
-          onClick={handleClick}
+          onClick={() => handleClick("/sellresp")}  // Navigate to /sellresp
         >
-         Sell Response
+          Sell Response
         </MyButton>
       </div>
-      <div >
+
+      <div>
         <MyButton
           variant="outlined"
           color="secondary"
           size="large"
-          onClick={handleClick}
+          onClick={() => handleClick("/sell")}  // Navigate to /sell
         >
-        Sell
+          Sell
         </MyButton>
       </div>
-      <div >
+
+      <div>
         <MyButton
           variant="outlined"
           color="secondary"
           size="large"
-          onClick={handleClick}
+          onClick={() => handleClick("/login")}  // Navigate to /login if needed
         >
           Login/Register
         </MyButton>

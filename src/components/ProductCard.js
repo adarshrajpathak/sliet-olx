@@ -1,10 +1,14 @@
 import React from 'react';
 import './ProductCard.css';
 import MyButton from "./Button/Button";
-
+import { useNavigate } from "react-router-dom";
 function ProductCard({ product }) {
-  const handleClick = () => {
-    alert("Login & Shop");
+
+const navigate = useNavigate();
+
+  const handleClick = (path) => {
+    navigate(path); // Navigate to the specified path
+    // alert("cp")
   };
   return (
     <>
@@ -24,7 +28,7 @@ function ProductCard({ product }) {
           variant="outlined"
           color="secondary"
           size="large"
-          onClick={handleClick}
+          onClick={() => handleClick("buyclick")} 
         >
           BUY
         </MyButton>

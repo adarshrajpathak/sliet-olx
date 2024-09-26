@@ -2,9 +2,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import LandingPage from './Screen/LandingPage';
-import SellProduct from "./Screen/SellProduct";
+import LandingPage from './Screen/LandingPage/LandingPage';
 
+import Sell from './Screen/Sell/Sell';
+import BuyClick from './Screen/BuyClick/BuyClick';
+import SellResponse from "./Screen/SellResponse/SellResponse"
 import './App.css';
 
 function App() {
@@ -26,7 +28,10 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       {/* <Route path="/sign" element={<SignIn/>} /> */}
-      <Route path="/sell" element={<SellProduct/>} />
+
+      <Route path="/sell" element={<Sell/>} />
+      <Route path="/buyclick" element={<BuyClick/>} />
+      <Route path="/sellresp" element={<SellResponse/>} />
     </Routes>
   </Router>
   );

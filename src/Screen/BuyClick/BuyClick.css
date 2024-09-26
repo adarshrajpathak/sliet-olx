@@ -1,0 +1,101 @@
+.form-container {
+  max-width: 90%;
+  width: 400px;
+  margin: 50px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  background-color: white;
+}
+
+.user-title {
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box {
+  width: 100%;
+  height: 150px;
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+}
+
+.info-section {
+  margin: 15px 0;
+  line-height: 1.5;
+}
+
+.price-form {
+  margin-top: 20px;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .form-container {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .image-box {
+    height: 120px;
+  }
+
+  .user-title {
+    font-size: 20px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    width: 95%;
+    margin: 30px auto;
+    padding: 10px;
+  }
+
+  .image-box {
+    height: 100px;
+  }
+
+  .user-title {
+    font-size: 18px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

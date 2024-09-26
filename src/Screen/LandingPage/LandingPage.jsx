@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from '../components/Navbar';
-import ProductList from "../components/ProductList"
-import AllListing from '../components/AllListing';
+import Navbar from '../../components/Navbar';
+import ProductList from "../../components/ProductList"
+import AllListing from '../../components/AllListing';
 const LandingPage = () => {
   return (
     <div>
