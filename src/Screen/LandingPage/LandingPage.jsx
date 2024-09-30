@@ -1,20 +1,23 @@
-import React from 'react'
+import React from 'react';
+ // Import the AuthContext
 import Navbar from '../../components/Navbar';
-import ProductList from "../../components/ProductList"
+import ProductList from "../../components/ProductList";
 import AllListing from '../../components/AllListing';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 const LandingPage = () => {
+
+
   return (
     <div>
       <Navbar />
-      <div className="content">
+        {/* Display the product list and all listings */}
         <ProductList />
-    
-      </div>
-      <div className="content">
-          <AllListing />
-          </div>
-    </div>
-  )
-}
+        <AllListing />
 
-export default LandingPage
+    </div>
+  );
+};
+
+export default LandingPage;

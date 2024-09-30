@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography } from '@mui/material';
+import { TextField, Button, Box, Typography, Snackbar, Alert } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './authcontext'; // Import the useAuth hook
 
 const LoginSignupForm = () => {
+  const { setIsLoggedIn } = useAuth(); // Get setIsLoggedIn function from context
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [hostel, setHostel] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
-    // Validate email
-    if (!email.endsWith('@sliet.ac.in')) {
-      setError('Please enter a valid SLIET email address.');
+    // Check credentials
+    if (email === '2140147@sliet.ac.in' && password === '1234567') {
+      setIsLoggedIn(true); // Update login state
+      navigate('/'); // Redirect to the landing page
     } else {
-      setError(''); // Clear the error if email is valid
-      // Proceed with login/signup logic
-      console.log('Email:', email);
-      console.log('Name:', name);
-      console.log('Mobile:', mobile);
-      console.log('Hostel:', hostel);
-      // Add your login/signup logic here
+      setError('Invalid email or password');
+      setOpenSnackbar(true);
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
 
   return (
@@ -34,8 +38,8 @@ const LoginSignupForm = () => {
       sx={{ backgroundColor: '#f5f5f5' }}
     >
       <Box
-        component="form" // Making the Box act as a form
-        onSubmit={handleSubmit} // Handle form submission
+        component="form" 
+        onSubmit={handleSubmit} 
         sx={{
           backgroundColor: '#fff',
           padding: '2rem',
@@ -53,44 +57,25 @@ const LoginSignupForm = () => {
           label="SLIET Email"
           variant="outlined"
           value={email}
-          onChange={(e) => setEmail(e.target.value)} // Update email state
-          error={!!error} // Set error state
-          helperText={error} // Show error message
+          onChange={(e) => setEmail(e.target.value)} 
           sx={{ marginBottom: '1.5rem' }}
         />
         
         <TextField
           fullWidth
-          label="Your Name"
+          label="Password"
           variant="outlined"
-          value={name}
-          onChange={(e) => setName(e.target.value)} // Update name state
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)} 
           sx={{ marginBottom: '1.5rem' }}
         />
-        
-        <TextField
-          fullWidth
-          label="Your Mobile"
-          variant="outlined"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)} // Update mobile state
-          sx={{ marginBottom: '1.5rem' }}
-        />
-        
-        <TextField
-          fullWidth
-          label="Hostel"
-          variant="outlined"
-          value={hostel}
-          onChange={(e) => setHostel(e.target.value)} // Update hostel state
-          sx={{ marginBottom: '1.5rem' }}
-        />
-        
+
         <Button
           fullWidth
           variant="contained"
           size="large"
-          type="submit" // Specify this button as a submit button
+          type="submit" 
           sx={{
             backgroundColor: '#3f51b5',
             color: '#fff',
@@ -101,6 +86,12 @@ const LoginSignupForm = () => {
         >
           Login
         </Button>
+
+        <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+          <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+            {error}
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );
