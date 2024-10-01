@@ -37,5 +37,10 @@
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
   background-color: rgba(0, 0, 0, 0.7);
-  border-color: yellow;
+  border-color: rgb(0, 0, 0);
 }
+@media (max-width: 768x) {
+    .carousel {
+      display: none; /* Hides the carousel */
+    }
+  }

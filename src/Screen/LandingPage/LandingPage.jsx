@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../components/Darkmode/Theme';
 import Phone from "../../components/3d icons/phone"
-import Casousel from "../../components/Casousel/Casousel"
+import Carousel from "../../components/Carousel/Carousel"
 const LandingPage = () => {
   const { isDarkMode } = useTheme();
 
@@ -17,7 +17,7 @@ const LandingPage = () => {
         <div className={isDarkMode ? 'dark-mode' : 'light-mode'}>
       <Navbar />
       {/* <Phone /> */}
-      <Casousel />
+      <Carousel />
 
         {/* Display the product list and all listings */}
         <ProductList />

@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import ExampleCarouselImage from "./ExampleCarouselImage";
 import firstImage from '../../images/main1.png';
 import secondImage from '../../images/main2.jpg';
 import thirdImage from '../../images/main3.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Casousel.css";
+import "./Carousel.css";
+
 function UncontrolledExample() {
+  const [isScreenWide, setIsScreenWide] = useState(window.innerWidth >= 768);
+
+  // Update the state when the screen is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setIsScreenWide(window.innerWidth >= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  if (!isScreenWide) {
+    return null; // Hide the carousel if the screen width is less than 768px
+  }
+
   return (
     <Carousel>
       <Carousel.Item>
