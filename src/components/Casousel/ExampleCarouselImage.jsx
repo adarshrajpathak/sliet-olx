@@ -1,5 +1,3 @@
-// src/components/ExampleCarouselImage.js
-
 import React from 'react';
 
 function ExampleCarouselImage({ imageSrc, altText }) {
@@ -7,7 +5,7 @@ function ExampleCarouselImage({ imageSrc, altText }) {
     <img
       src={imageSrc}
       alt={altText}
-      style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+      style={{ width: '100%', height: '500px', objectFit: 'contain' }} // Use 'contain' to fit different aspect ratios
     />
   );
 }

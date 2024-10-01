@@ -1,0 +1,41 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Change arrow background color */
+  border: 2px solid white; /* Add border around arrows */
+  border-radius: 50%; /* Make it circular */
+  width: 40px; /* Adjust size */
+  height: 40px; /* Adjust size */
+  display: flex; /* Center the custom arrow icon */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide the default bootstrap arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none; /* This hides the original background arrows */
+}
+
+/* Add custom arrow symbols */
+.carousel-control-prev-icon:after,
+.carousel-control-next-icon:after {
+  font-size: 20px;
+  color: white; /* Change custom arrow color */
+  display: inline-block;
+}
+
+/* Left and right arrows */
+.carousel-control-prev-icon:after {
+  content: '◀'; /* Custom left arrow */
+}
+
+.carousel-control-next-icon:after {
+  content: '▶'; /* Custom right arrow */
+}
+
+/* Optional: Change background color and border on hover */
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-color: yellow;
+}
