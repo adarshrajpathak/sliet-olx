@@ -1,48 +1,37 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from './authcontext'; // Import the useAuth hook
 const OTPInputPage = () => {
-  const [otp, setOtp] = useState('');
-  const [error, setError] = useState('');
+  const { setIsLoggedIn } = useAuth(); 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [error, setError] = useState('');
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
+  
 
-    // Only allow input of 4 digits
-    if (/^\d{0,4}$/.test(value)) {
-      setOtp(value);
-      setError('');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Check credentials
+    if (email === '2140147@sliet.ac.in' && password === '1234567') {
+      setIsLoggedIn(true); // Update login state
+      navigate('/'); // Redirect to the landing page
     } else {
-      setError('OTP must be exactly 4 digits');
+      setError('Invalid email or password');
+      setOpenSnackbar(true);
     }
-  };
+  }; 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handlesendOtp = () => {
+    navigate('/otp');
     
-    if (otp.length !== 4) {
-      setError('Please enter a valid 4-digit OTP');
-    } else {
-      setError('');
-      console.log('OTP:', otp);
-      
-      // Handle OTP verification logic here
-      navigate('/signin');
-    }
   };
-
-  const handleResendOtp = () => {
-    // Logic to resend the OTP
-    console.log('Resending OTP...');
-    // You can also add an API call here to resend the OTP
-
-    // Optionally, display a message or confirmation to the user
-    alert('OTP has been resent. Please check your email or SMS.');
-    navigate('/regenerate_otp');
+  const handleExistingOtp = () => {
+    navigate('/otp'); // Navigate to the login page for existing users
   };
-
   return (
     <Box
       display="flex"
@@ -66,22 +55,15 @@ const OTPInputPage = () => {
           maxWidth: '400px',
         }}
       >
-        <Typography variant="h5" align="center" gutterBottom>
-          Enter OTP
-        </Typography>
+    
 
         <TextField
           fullWidth
-          label="4-digit OTP"
+          label="SLIET Email"
           variant="outlined"
-          value={otp}
-          onChange={handleChange}
-          error={!!error}
-          helperText={error}
-          inputProps={{
-            maxLength: 4,
-          }}
-          sx={{ marginBottom: '1.5rem', textAlign: 'center' }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} 
+          sx={{ marginBottom: '1.5rem' }}
         />
         
         <Button
@@ -89,6 +71,7 @@ const OTPInputPage = () => {
           variant="contained"
           size="large"
           type="submit"
+          onClick={handleExistingOtp}
           sx={{
             backgroundColor: '#3f51b5',
             color: '#fff',
@@ -98,14 +81,14 @@ const OTPInputPage = () => {
             marginBottom: '1rem',
           }}
         >
-          Verify OTP
+          Already have otp
         </Button>
 
         <Button
           fullWidth
           variant="outlined"
           size="large"
-          onClick={handleResendOtp}
+          onClick={handlesendOtp}
           sx={{
             color: '#3f51b5',
             borderColor: '#3f51b5',
@@ -115,7 +98,7 @@ const OTPInputPage = () => {
             },
           }}
         >
-          Resend OTP
+          Send
         </Button>
       </Box>
     </Box>

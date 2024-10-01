@@ -17,6 +17,18 @@
   display: block; /* Ensure the logo is a block element */
 }
 
+/* Light Mode */
+.light-mode {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #333;
+  color: #f8f9fa;
+}
+
 /* Button group */
 .menu {
   display: flex;

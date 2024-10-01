@@ -8,11 +8,13 @@ import BuyClick from "./Screen/BuyClick/BuyClick";
 import SellResponse from "./Screen/SellResponse/SellResponse";
 import Signup from "./Screen/SignIN/Signup";
 import OTPInputPage from "./Screen/SignIN/otp";
+import OTPInputPage2 from "./Screen/SignIN/regenerate_otp";
 import LoginPage from "./Screen/SignIN/Signin";
 import "./App.css";
-
+import ThemeProvider from './components/Darkmode/Theme';
 function App() {
   return (
+    <ThemeProvider>
     <AuthProvider>
     <Router>
       <Routes>
@@ -22,10 +24,12 @@ function App() {
         <Route path="/buyclick" element={<BuyClick />} />
         <Route path="/sellresp" element={<SellResponse />} />
         <Route path="/otp" element={<OTPInputPage />} />
+        <Route path="/otp2" element={<OTPInputPage2 />} />
         <Route path="/signin" element={<LoginPage />} />
       </Routes>
     </Router>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 

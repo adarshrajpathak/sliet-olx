@@ -2,6 +2,8 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import "./ProductList.css";
 import carImage from "../images/car.png";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 
 // import CustomCard from './Card/Card';
 
@@ -39,6 +41,22 @@ const productData = [
     location: "Samudrapur, Maharashtra",
     date: "Sep 24",
   },
+  {
+    id: 5,
+    imageUrl: carImage, // Add image URL for mobile phone
+    title: "iPhone 13 (7 months old)",
+    price: "₹ 23,000",
+    location: "Samudrapur, Maharashtra",
+    date: "Sep 24",
+  },
+  {
+    id: 6,
+    imageUrl: carImage, // Add image URL for mobile phone
+    title: "iPhone 13 (7 months old)",
+    price: "₹ 23,000",
+    location: "Samudrapur, Maharashtra",
+    date: "Sep 24",
+  },
 
   // Add more products here...
 ];
@@ -46,11 +64,29 @@ const productData = [
 function AllListing() {
   return (
     <>
-     <div className="Header">All Listing</div>
+      <div className="Header">All Listing</div>
       <div className="product-list">
-        {productData.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <Carousel
+          centerMode
+          centerSlidePercentage={30}
+          infiniteLoop
+          // autoPlay
+          interval={2000}
+          showStatus={false}
+          showThumbs={false}
+          showArrows={false}
+          transitionTime={1500}
+          swipeScrollTolerance={5}
+          dynamicHeight={false}
+          showIndicators={false}
+          swipeable
+          emulateTouch
+          axis="horizontal"
+        >
+          {productData.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </Carousel>
       </div>
     </>
   );

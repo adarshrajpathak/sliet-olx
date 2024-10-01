@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Screen/SignIN/authcontext"; // Import the AuthContext
 import logo from "../images/slietOlx.png"
 import logo1 from "../images/slietOlx2.jpeg"
+import { useTheme } from './Darkmode/Theme'; // Import useTheme hook
 
 function Navbar() {
+  const { isDarkMode, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth(); // Get isLoggedIn and logout from the context
@@ -17,7 +19,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
        <div className="logo">
         <img src={logo1} alt="SLIET OLX"  />
       </div>
@@ -50,6 +52,9 @@ function Navbar() {
         >
           Sell
         </MyButton>
+        {/* <MyButton variant="contained" onClick={toggleTheme}>
+          {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+        </MyButton> */}
 
         {/* Conditionally render Login/Register or Logout button */}
         {!isLoggedIn ? (
