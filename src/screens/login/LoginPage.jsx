@@ -1,15 +1,15 @@
-// LoginPage.jsx
-
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './LoginPage.css'; // Ensure this path is correct based on your project structure
+import './LoginPage.css';
 import Navbar from '../../components/navbar/Navbar';
-import { useTheme } from '../../contexts/theme/ThemeContext'; // Import the useTheme hook
+import { useTheme } from '../../contexts/theme/ThemeContext';
+import { useAuth } from '../../contexts/auth/AuthContext';
 
 const LoginPage = () => {
   const { theme } = useTheme();
+  const { login } = useAuth();
 
   // State variables for form fields
   const [email, setEmail] = useState('');
@@ -21,6 +21,7 @@ const LoginPage = () => {
 
   // State variables for API call
   const [apiError, setApiError] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); // New success message state
   const [isLoading, setIsLoading] = useState(false);
 
   // Snackbar state
@@ -34,11 +35,11 @@ const LoginPage = () => {
     if (!emailRegex.test(value)) {
       setEmailError('Please enter a valid SLIET email address.');
     } else {
-      setEmailError(''); // Clear the error when valid email is entered
+      setEmailError('');
     }
   };
 
-  // Function to validate password (optional: add more rules if needed)
+  // Function to validate password
   const validatePassword = (value) => {
     if (value.length < 6) {
       setPasswordError('Password must be at least 6 characters long.');
@@ -49,9 +50,8 @@ const LoginPage = () => {
 
   // Handle form submission
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
-    // Final validation on form submission
     let isValid = true;
 
     if (!email.endsWith('@sliet.ac.in')) {
@@ -65,22 +65,22 @@ const LoginPage = () => {
     }
 
     if (!isValid) {
-      return; // Exit if validation fails
+      return;
     }
 
-    // Clear previous errors
+    // Clear previous errors and messages
     setEmailError('');
     setPasswordError('');
     setApiError('');
+    setSuccessMessage(''); // Clear previous success message
 
-    // Prepare form data
     const formData = {
       email,
       password,
     };
 
     try {
-      setIsLoading(true); // Start loading
+      setIsLoading(true);
 
       // Make API call
       const response = await axios.post('http://localhost:5050/api/v1/users/create-session', formData, {
@@ -89,14 +89,14 @@ const LoginPage = () => {
         },
       });
 
-      // Handle successful login (assuming response contains necessary info)
       console.log('Login successful:', response.data);
+      login(response.data.user); // Store user in context
 
-      // Optionally, store authentication tokens or user data here
+      // Set success message
+      setSuccessMessage('Login successful! Redirecting...');
+      setOpenSnackbar(true);
 
-      // Navigate to the landing page
-      // navigate('/');
-
+      // Redirect to home page after a short delay
       setTimeout(() => {
         navigate('/');
       }, 2000);
@@ -112,7 +112,7 @@ const LoginPage = () => {
 
       setOpenSnackbar(true); // Open the Snackbar to display the error
     } finally {
-      setIsLoading(false); // End loading
+      setIsLoading(false);
     }
   };
 
@@ -126,9 +126,10 @@ const LoginPage = () => {
     navigate('/signup');
   };
 
-  const handleNavigateToVerify=()=>{
-    navigate('/otp-regenerate')
-  }
+  // Navigate to OTP verification page
+  const handleNavigateToVerify = () => {
+    navigate('/otp-regenerate');
+  };
 
   return (
     <>
@@ -182,10 +183,10 @@ const LoginPage = () => {
             }}
           />
 
-          {/* API Error Message */}
-          {apiError && (
-            <Typography variant="body2" color="error" align="center" className="api-error">
-              {apiError}
+          {/* API Error or Success Message */}
+          {(apiError || successMessage) && (
+            <Typography variant="body2" color={successMessage ? 'primary' : 'error'} align="center" className="api-message">
+              {successMessage || apiError}
             </Typography>
           )}
 
@@ -206,15 +207,15 @@ const LoginPage = () => {
             Don't have an account? <span className="signup-hyperlink" onClick={handleNavigateToSignup}>Signup</span>
           </Typography>
 
-          {/* Signup Hyperlink */}
-            <Typography variant="body2" align="center" className="signup-link">
+          {/* Verify Email Hyperlink */}
+          <Typography variant="body2" align="center" className="signup-link">
             Haven't Verified your Email? <span className="signup-hyperlink" onClick={handleNavigateToVerify}>Verify Email</span>
           </Typography>
 
-          {/* Snackbar for API Errors */}
+          {/* Snackbar for API Messages */}
           <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-            <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
-              {apiError}
+            <Alert onClose={handleCloseSnackbar} severity={successMessage ? 'success' : 'error'} sx={{ width: '100%' }}>
+              {successMessage || apiError}
             </Alert>
           </Snackbar>
         </Box>
