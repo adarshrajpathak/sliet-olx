@@ -1,0 +1,207 @@
+/* LoginPage.css */
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Container Styling */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px; /* Height of the navbar to prevent overlap */
+    background-color: rgba(245, 245, 245, 0.95); /* Slight opacity */
+  }
+  
+  .dark-mode.login-container {
+    background-color: rgba(25, 27, 33, 0.95); /* Dark background with opacity */
+  }
+  
+  /* Login Form Styling */
+  .login-form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+    overflow-y: auto; /* Enable scrolling if content overflows */
+  }
+  
+  .dark-mode.login-form {
+    background-color: rgba(25, 27, 33, 0.9); /* Dark semi-transparent background */
+    color: #ecf0f1; /* Light text color */
+  }
+  
+  .light-mode.login-form {
+    background-color: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
+    color: #2c3e50; /* Dark text color */
+  }
+  
+  /* Login Title */
+  .login-title {
+    color: #3a77ff; /* Blue color consistent with earlier pages */
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .dark-mode .login-title {
+    color: #3a77ff; /* Keep blue in dark mode */
+  }
+  
+  .light-mode .login-title {
+    color: #3a77ff; /* Keep blue in light mode */
+  }
+  
+  /* Text Fields Styling */
+  .login-textfield {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Dark Mode Input Styling */
+  .dark-mode .MuiOutlinedInput-root {
+    color: #ecf0f1; /* Light text for input */
+  }
+  
+  .dark-mode .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(255, 255, 255, 0.6); /* Smoky white border */
+  }
+  
+  .dark-mode .MuiInputLabel-root {
+    color: rgba(255, 255, 255, 0.6); /* Smoky white label */
+  }
+  
+  .dark-mode .MuiFormHelperText-root {
+    color: #e74c3c; /* Error message color */
+  }
+  
+  .dark-mode .api-error {
+    color: #e74c3c;
+  }
+  
+  /* Light Mode Input Styling */
+  .light-mode .MuiOutlinedInput-root {
+    color: #2c3e50; /* Dark text for input */
+  }
+  
+  .light-mode .MuiOutlinedInput-notchedOutline {
+    border-color: #3a77ff; /* Border color consistent */
+  }
+  
+  .light-mode .MuiInputLabel-root {
+    color: #3a77ff; /* Label color consistent */
+  }
+  
+  .light-mode .MuiFormHelperText-root {
+    color: #e74c3c; /* Error message color */
+  }
+  
+  .light-mode .api-error {
+    color: #e74c3c;
+  }
+  
+  /* Login Button Styling */
+  .login-button {
+    background-color: #3a77ff; /* Blue background */
+    color: #fff;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #3268d1; /* Darker blue on hover */
+    transform: translateY(-2px);
+  }
+  
+  .dark-mode .login-button {
+    background-color: #3a77ff; /* Maintain blue in dark mode */
+  }
+  
+  .light-mode .login-button {
+    background-color: #3a77ff; /* Maintain blue in light mode */
+  }
+  
+  /* Signup Hyperlink Styling */
+  .signup-link {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .signup-hyperlink {
+    color: #3a77ff;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .signup-hyperlink:hover {
+    color: #2c5dcf;
+  }
+  
+  /* API Error Message Styling */
+  .api-error {
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .login-form {
+      padding: 1.5rem;
+    }
+  
+    .login-title {
+      font-size: 1.5rem;
+    }
+  
+    .login-textfield {
+      margin-bottom: 1rem;
+    }
+  
+    .login-button {
+      margin-bottom: 0.8rem;
+    }
+  
+    .signup-link {
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-container {
+      padding-top: 50px; /* Adjust if navbar height changes on mobile */
+    }
+  
+    .login-form {
+      padding: 1rem;
+    }
+  
+    .login-title {
+      font-size: 1.3rem;
+    }
+  
+    .login-textfield {
+      margin-bottom: 0.8rem;
+    }
+  
+    .login-button {
+      margin-bottom: 0.6rem;
+    }
+  
+    .signup-link {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* Navbar should have higher z-index to stay on top */
+  .navbar {
+    z-index: 1000;
+  }
+  

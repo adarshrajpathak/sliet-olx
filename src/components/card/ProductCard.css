@@ -1,0 +1,196 @@
+/* ProductCard.css */
+
+/* General Card Styling */
+.product-card {
+  position: relative; /* To position the status tag absolutely within the card */
+  width: 100%;
+  max-width: 300px; /* Slightly increased for more breathing space */
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 12px; /* Softer corners */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff; /* Clean white background */
+}
+
+/* Status Tag Styling */
+.product-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 0.9rem;
+  z-index: 1; /* Ensure the tag is above other elements */
+}
+
+/* Sold Tag */
+.sold-tag {
+  background-color: #e74c3c; /* Red color for Sold */
+}
+
+/* For Sale Tag */
+.for-sale-tag {
+  background-color: #27ae60; /* Green color for For Sale */
+}
+
+/* Product Image */
+.product-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Add smooth zoom effect */
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Product Information */
+.product-info {
+  padding: 15px;
+  text-align: left;
+  background-color: #f9f9f9; /* Light background for contrast */
+}
+
+/* Product Title */
+.product-title {
+  font-size: 1.2rem; /* Slightly larger for readability */
+  font-weight: bold;
+  margin-bottom: 10px; /* Increased margin for better spacing */
+  color: #4a148c; /* Rich purple color */
+  transition: color 0.3s ease;
+}
+
+.product-card:hover .product-title {
+  color: #6200ea; /* Highlight on hover */
+}
+
+/* Price and Action Button Container */
+.price-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 1.1rem;
+  color: #27ae60; /* Green color for price to match "For Sale" */
+  font-weight: bold;
+}
+
+/* Buy Button */
+.buy-button {
+  background-color: #27ae60; /* Green background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buy-button:hover {
+  background-color: #219150; /* Darker green on hover */
+  transform: translateY(-2px);
+}
+
+/* View Button */
+.view-button {
+  background-color: #3a77ff; /* Blue background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #3268d1; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+
+/* Mobile Action Button Container */
+.mobile-action-button {
+  display: none; /* Hidden by default */
+  margin-top: 15px;
+}
+
+/* Product Location */
+.product-location {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Product Description */
+.product-description {
+  font-size: 0.9rem;
+  color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .product-card {
+    margin: 10px;
+  }
+
+  .product-title {
+    font-size: 1.1rem;
+  }
+
+  .product-price {
+    font-size: 1rem;
+  }
+
+  .product-location,
+  .product-description {
+    font-size: 0.75rem;
+  }
+
+  .price-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buy-button,
+  .view-button {
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  /* Show the mobile-action-button and hide the original button */
+  .mobile-action-button {
+    display: block;
+  }
+
+  .price-action button {
+    display: none; /* Hide the original button in price-action */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    max-width: 100%; /* Full width on small screens */
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-card {
+    max-width: 320px; /* Larger max width for larger screens */
+  }
+}

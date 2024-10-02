@@ -1,0 +1,201 @@
+/* ProductList.css */
+
+/* Import Google Fonts if needed */
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap");
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Titillium Web", sans-serif;
+}
+
+/* Wrapper for the entire product list section */
+.product-list-wrapper {
+  width: 100%;
+  padding: 20px 0 0 20px;
+  background-color: transparent; /* Transparent background */
+  position: relative; /* For absolute positioning of nav buttons */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Header Styling */
+.header {
+  color: #3a77ff; /* Modern purple for a rich tone */
+  font-size: 2em; /* Increased font size for more impact */
+  font-weight: bold; /* Bold font for emphasis */
+  text-align: center; /* Centered header */
+  text-transform: uppercase; /* Converts text to uppercase */
+  letter-spacing: 1.5px; /* Adds letter spacing for style */
+  margin-bottom: 20px; /* Spacing between header and content */
+}
+
+/* Product List Container */
+.product-list-container {
+  position: relative; /* To position nav buttons absolutely within */
+}
+
+/* Navigation Buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  border: none;
+  color: #3a77ff; /* Primary color for icons */
+  cursor: pointer;
+  z-index: 10; /* Ensure buttons are above product cards */
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button.left {
+  left: 10px; /* Position on the left */
+}
+
+.nav-button.right {
+  right: 10px; /* Position on the right */
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 1); /* More opaque on hover */
+  color: #3a77ff /* Darker shade on hover */
+}
+
+/* Product List Flexbox */
+.product-list {
+  /* margin-left: 5vw; */
+  /* margin-right: 5vw; */
+  display: flex;
+  gap: 18px; /* Space between product cards */
+  padding: 0 40px; /* Adjusted horizontal padding to accommodate nav buttons */
+  scroll-snap-type: x mandatory; /* Enables scroll snapping */
+  overflow-x: scroll; /* Enables horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  background-color: transparent; /* Transparent background */
+}
+
+/* Hide Scrollbar */
+.product-list::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.product-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Product Card Styling */
+.product-card {
+  flex: 0 0 300px; /* Fixed width for desktop */
+  scroll-snap-align: start; /* Aligns the start of the card with the container */
+  background-color: #ffffff; /* White background for cards */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Product Image */
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+}
+
+/* Product Details */
+.product-details {
+  padding: 15px;
+}
+
+.product-details h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.product-details p {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 8px;
+}
+
+.product-details .price {
+  font-size: 1.1rem;
+  color: #00c224;
+  font-weight: bold;
+}
+
+.product-details .location,
+.product-details .date {
+  font-size: 0.9rem;
+  color: #999999;
+}
+
+/* Responsive Adjustments */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .product-card {
+    flex: 0 0 250px; /* Slightly smaller cards */
+  }
+
+  .product-list {
+    padding: 0 30px; /* Adjusted padding */
+    gap: 15px; /* Reduced gap */
+  }
+
+  .header {
+    font-size: 1.8em; /* Slightly smaller font size for tablets */
+    margin-bottom: 15px; /* Adjusted spacing */
+  }
+
+  .nav-button {
+    padding: 6px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .product-list {
+    padding: 0 20px; /* Further adjusted padding */
+    gap: 15px; /* Reduced gap for mobile */
+  }
+
+  .product-card {
+    flex: 0 0 80%; /* Nearly full width on mobile */
+    max-width: 300px; /* Prevent excessively large cards */
+  }
+
+  .header {
+    font-size: 1.6em; /* Smaller font size for mobile */
+    margin-bottom: 10px; /* Tighter spacing */
+  }
+
+  .nav-button {
+    display: none; /* Hide navigation buttons on mobile */
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .product-card {
+    flex: 0 0 90%; /* Almost full width on small mobile screens */
+    max-width: none; /* Remove max-width */
+  }
+
+  .header {
+    font-size: 1.4em; /* Even smaller font size for small mobile */
+    margin-bottom: 8px; /* Tighter spacing */
+  }
+}

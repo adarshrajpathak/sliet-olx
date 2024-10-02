@@ -1,0 +1,320 @@
+.navbar {
+  position: fixed; /* Makes the navbar fixed at the top */
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px; /* Fixed height */
+  padding: 0 15px 0 0; /* Horizontal padding */
+  background-color: #f8f9fa;
+  /* position: relative; */
+  z-index: 100; /* Ensure navbar stays on top */
+  width: 100%;
+  box-sizing: border-box;
+  /* margin-top: -5px; */
+}
+
+/* Dark and Light Mode */
+/* .light-mode {
+  background-color: #f8f9fa;
+  color: #333;
+} */
+
+.dark-mode {
+  background-color: #333;
+  color: #f8f9fa;
+}
+
+/* Logo and Tagline Container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Uniform spacing between logo and tagline */
+}
+
+/* Logo styling */
+.logo-img {
+  width: 50px; /* Adjusted to fit within navbar height */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin-left: 10px; /* Aligns logo slightly to the left */
+}
+/* Tagline Button Styling */
+.tagline-button {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-size: 1.2rem;
+  font-family: "Arial", sans-serif;
+  color: transparent;
+  -webkit-text-stroke: 1px #3a77ff; /* Match the logo color */
+}
+
+.tagline-button .actual-text {
+  display: inline-block;
+  position: relative;
+}
+
+.tagline-button .hover-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  color: #3a77ff;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.5s ease;
+  -webkit-text-stroke: 1px #3a77ff;
+}
+
+.tagline-button:hover .hover-text {
+  width: 100%;
+}
+
+
+/* Button group */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Uniform spacing between buttons */
+  margin-right: 10px;
+}
+
+/* Style for MyButton components */
+.menu .MuiButton-root {
+  padding: 8px 16px; /* Adjusted padding for consistency */
+  background-color: transparent;
+  color: #3a77ff; /* Changed to match the logo color */
+  border: 2px solid #3a77ff; /* Changed to match the logo color */
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 0.9rem; /* Adjusted font size for better fit */
+  /* width: 100%; */
+}
+
+.menu .MuiButton-root:hover {
+  background-color: #3a77ff; /* Match hover background with logo color */
+  color: white;
+}
+
+/* Login/Register and Logout Button Styling */
+.boton-elegante {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 2px solid #3a77ff; /* Match the logo color */
+  background-color: #3a77ff; /* Match the logo color */
+  color: #ffffff;
+  font-size: 0.9rem; /* Adjusted font size */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+}
+
+.boton-elegante .icon-login {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.boton-elegante:hover {
+  background-color: #2c5dcf; /* Darker shade on hover */
+  border-color: #2c5dcf;
+  color: white;
+}
+
+/* Hamburger menu styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #3a77ff; /* Match logo color */
+  margin: 4px 4px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger animation */
+.hamburger .change:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger .change:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger .change:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile dropdown for small screens */
+.menu.open {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Mobile menu dropdown */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  padding: 15px;
+  position: absolute;
+  top: 60px; /* Same as navbar height */
+  right: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000; /* Ensure the menu appears on top */
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu button {
+  width: 100%; /* Ensure buttons take full width */
+  background-color: #3a77ff; /* Match logo color */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mobile-menu button:hover {
+  background-color: #2c5dcf; /* Darker shade on hover */
+  color: white;
+}
+
+/* Fix issue with button overlaps */
+.mobile-menu button + button {
+  margin-top: 10px; /* Add space between buttons */
+}
+
+/* Media Queries */
+@media (max-width: 855px) {
+  .menu {
+    display: none;
+    position: absolute;
+    top: 60px; /* Same as navbar height */
+    right: -10px;
+    background-color: inherit;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+  .menu .MuiButton-root {
+    width: 100%;
+  }
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    top: 60px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    width: 40px; /* Smaller size for mobile screens */
+  }
+
+  .tagline-button .actual-text{
+    font-size: 2rem !important;
+  }
+  .hover-text{
+    font-size: 2rem !important;
+  }
+
+  .menu .MuiButton-root {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .boton-elegante {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+/* Icon Button Styling */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: inherit; /* Inherits color based on theme */
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}
+
+/* Theme Icon Styling */
+.theme-icon {
+  font-size: 24px; /* Adjust size as needed */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.theme-icon.light {
+  color: #ffffff; /* Example color for light mode */
+}
+
+.theme-icon.dark {
+  color: #191b21; /* Example color for dark mode */
+}
+
+/* Optional: Smooth Background Transition */
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+/* Dark and Light Mode Classes */
+.dark-mode {
+  background-color: #191b21; /* Example dark background */
+  background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+  color: #ecf0f1; /* Example dark text color */
+}
+
+.light-mode {
+  background-color: #ecf0f1; /* Example light background */
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  color: #2c3e50; /* Example light text color */
+}
+.dark-mode-shadow{
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+.light-mode-shadow{
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar > * {
+  box-shadow: none;
+}

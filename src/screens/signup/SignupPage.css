@@ -1,0 +1,217 @@
+/* SignupPage.css */
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Container Styling */
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px; /* Height of the navbar to prevent overlap */
+    background-color: rgba(245, 245, 245, 0.95); /* Slight opacity */
+  }
+  
+  .dark-mode.signup-container {
+    background-color: rgba(25, 27, 33, 0.95); /* Dark background with opacity */
+  }
+  
+  /* Signup Form Styling */
+  .signup-form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+    overflow-y: auto; /* Enable scrolling if content overflows */
+  }
+  
+  .dark-mode.signup-form {
+    background-color: rgba(25, 27, 33, 0.9); /* Dark semi-transparent background */
+    color: #ecf0f1; /* Light text color */
+  }
+  
+  .light-mode.signup-form {
+    background-color: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
+    color: #2c3e50; /* Dark text color */
+  }
+  
+  /* Signup Title */
+  .signup-title {
+    color: #3a77ff; /* Blue color consistent with earlier pages */
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .dark-mode .signup-title {
+    color: #3a77ff; /* Keep blue in dark mode */
+  }
+  
+  .light-mode .signup-title {
+    color: #3a77ff; /* Keep blue in light mode */
+  }
+  
+  /* Text Fields Styling */
+  .signup-textfield {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Dark Mode Input Styling */
+  .dark-mode .MuiOutlinedInput-root {
+    color: #ecf0f1; /* Light text for input */
+  }
+  
+  .dark-mode .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(255, 255, 255, 0.6); /* Smoky white border */
+  }
+  
+  .dark-mode .MuiInputLabel-root {
+    color: rgba(255, 255, 255, 0.6); /* Smoky white label */
+  }
+  
+  .dark-mode .MuiFormHelperText-root {
+    color: #e74c3c; /* Error message color */
+  }
+  
+  /* Light Mode Input Styling */
+  .light-mode .MuiOutlinedInput-root {
+    color: #2c3e50; /* Dark text for input */
+  }
+  
+  .light-mode .MuiOutlinedInput-notchedOutline {
+    border-color: #3a77ff; /* Border color consistent */
+  }
+  
+  .light-mode .MuiInputLabel-root {
+    color: #3a77ff; /* Label color consistent */
+  }
+  
+  .light-mode .MuiFormHelperText-root {
+    color: #e74c3c; /* Error message color */
+  }
+  
+  /* Register Button Styling */
+  .signup-button {
+    background-color: #3a77ff; /* Blue background */
+    color: #fff;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .signup-button:hover {
+    background-color: #3268d1; /* Darker blue on hover */
+    transform: translateY(-2px);
+  }
+  
+  .dark-mode .signup-button {
+    background-color: #3a77ff; /* Maintain blue in dark mode */
+  }
+  
+  .light-mode .signup-button {
+    background-color: #3a77ff; /* Maintain blue in light mode */
+  }
+  
+  /* Login Hyperlink Styling */
+  .login-link {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .login-hyperlink {
+    color: #3a77ff;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .login-hyperlink:hover {
+    color: #2c5dcf;
+  }
+  
+  /* API Error Message Styling */
+  .api-error {
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .signup-form {
+      padding: 1.5rem;
+    }
+  
+    .signup-title {
+      font-size: 1.5rem;
+    }
+  
+    .signup-textfield {
+      margin-bottom: 1rem;
+    }
+  
+    .signup-button {
+      margin-bottom: 0.8rem;
+    }
+  
+    .login-link {
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .signup-container {
+      padding-top: 50px; /* Adjust if navbar height changes on mobile */
+    }
+  
+    .signup-form {
+      padding: 1rem;
+    }
+  
+    .signup-title {
+      font-size: 1.3rem;
+    }
+  
+    .signup-textfield {
+      margin-bottom: 0.8rem;
+    }
+  
+    .signup-button {
+      margin-bottom: 0.6rem;
+    }
+  
+    .login-link {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* Dark Mode Specific Styles */
+  .dark-mode {
+    color: #ecf0f1; /* Light text */
+  }
+  
+  .dark-mode .api-error {
+    color: #e74c3c;
+  }
+  
+  /* Light Mode Specific Styles */
+  .light-mode {
+    color: #2c3e50; /* Dark text */
+  }
+  
+  .light-mode .api-error {
+    color: #e74c3c;
+  }
+  
+  /* Navbar should have higher z-index to stay on top */
+  .navbar {
+    z-index: 1000;
+  }
+  

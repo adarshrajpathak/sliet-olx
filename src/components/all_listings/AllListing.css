@@ -1,0 +1,70 @@
+/* AllListing.css */
+
+/* Import Google Fonts if needed */
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Titillium Web", sans-serif;
+}
+
+/* Container for the entire listing section */
+.all-listing-container {
+  padding: 20px;
+}
+
+/* Header Styling */
+.header {
+  color: #3a77ff; /* Modern purple for a rich tone */
+  font-size: 2em; /* Increased font size for more impact */
+  font-weight: bold; /* Bold font for emphasis */
+  text-align: center; /* Centered header */
+  text-transform: uppercase; /* Converts text to uppercase */
+  letter-spacing: 1.5px; /* Adds letter spacing for style */
+  margin-bottom: 20px; /* Spacing between header and content */
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px; /* Space between product cards */
+  padding: 0 10px; /* Horizontal padding */
+}
+
+/* Responsive Adjustments */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .header {
+    font-size: 1.8em; /* Slightly smaller font size for tablets */
+    margin-bottom: 15px; /* Adjusted spacing */
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .header {
+    font-size: 1.6em; /* Smaller font size for mobile */
+    margin-bottom: 10px; /* Tighter spacing */
+  }
+}
