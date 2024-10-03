@@ -39,6 +39,7 @@ function Navbar() {
             SLIET OLX
           </span>
         </button>
+        
       </div>
 
       <div className={`menu ${isMenuOpen ? 'open' : ''} ${theme === 'dark' ? 'dark-mode' : 'light-mode'}`}>
