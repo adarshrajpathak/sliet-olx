@@ -1,101 +1,254 @@
-.form-container {
-  max-width: 90%;
-  width: 400px;
-  margin: 50px auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  background-color: white;
+/* src/screens/products/BuyPage.css */
+
+/* Main Container for the Buy Page */
+.buy-page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 10vh 5vw;
+  margin-top: 20px; /* To ensure it doesn't overlap with Navbar */
+  /* border-radius: 10px; */
+  transition: color 0.3s ease;
 }
 
-.user-title {
-  color: #333;
+/* Light Theme */
+.buy-page-container.light-mode {
+  color: #000000;
+}
+
+/* Dark Theme */
+.buy-page-container.dark-mode {
+  color: #ffffff;
+}
+
+/* Product Image Section */
+.buy-page-image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-page-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.buy-page-image:hover {
+  transform: scale(1.02);
+}
+
+/* Product Information Section */
+.buy-page-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Product Details */
+.buy-page-details {
+  /* Additional styling can be added here if needed */
+}
+
+.buy-page-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.buy-page-label {
   font-weight: bold;
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
 }
 
-.image-section {
+.buy-page-value {
+  /* No additional styling needed; inherits color */
+}
+
+.buy-page-price {
+  font-weight: bold;
+  color: green;
+}
+
+.buy-page-hostel,
+.buy-page-description,
+.buy-page-status,
+.buy-page-seller {
+  color: inherit;
+}
+
+/* Status Coloring */
+.status-sold {
+  color: red;
+  font-weight: bold;
+}
+
+.status-available {
+  color: green;
+  font-weight: bold;
+}
+
+/* Bid Form */
+.buy-page-bid-form {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.image-box {
-  width: 100%;
-  height: 150px;
-  background-color: #f0f0f0;
-  border: 2px dashed #ccc;
+.buy-page-bid-title {
+  font-weight: bold;
+  color: inherit;
+}
+
+.buy-page-bid-inputs {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #888;
+  gap: 20px;
+  flex-wrap: nowrap; /* Prevent wrapping to keep fields side by side */
 }
 
-.info-section {
-  margin: 15px 0;
-  line-height: 1.5;
+.buy-page-bid-input {
+  flex: 1;
+  min-width: 0; /* Allow inputs to shrink */
 }
 
-.price-form {
-  margin-top: 20px;
-}
-
-.submit-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px;
-  border: none;
+/* Submit Button */
+.buy-page-submit-button {
+  padding: 12px;
   border-radius: 5px;
-  width: 100%;
-  cursor: pointer;
-  font-size: 16px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
+.buy-page-container.dark-mode .buy-page-submit-button {
+  background-color: #1e88e5;
+  color: #ffffff;
+}
+
+.buy-page-submit-button:hover {
   background-color: #0056b3;
 }
 
+.buy-page-container.dark-mode .buy-page-submit-button:hover {
+  background-color: #1565c0;
+}
+
+/* Loading and Error Containers */
+.buy-page-loading,
+.buy-page-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.buy-page-error {
+  color: inherit; /* Inherits color based on theme */
+}
+
+/* Snackbar Styling */
+/* Removed custom positioning to use MUI's default positioning */
+
 /* Responsive Styling */
-@media (max-width: 768px) {
-  .form-container {
-    width: 80%;
-    padding: 15px;
+
+/* Tablet and Below */
+@media (max-width: 1024px) {
+  .buy-page-container {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .image-box {
-    height: 120px;
+  .buy-page-image-section,
+  .buy-page-info-section {
+    flex: 1 1 100%;
   }
 
-  .user-title {
-    font-size: 20px;
-  }
-
-  .submit-btn {
-    font-size: 14px;
-    padding: 8px;
+  .buy-page-image {
+    max-width: 100%;
   }
 }
 
-@media (max-width: 600px) {
-  .form-container {
-    width: 95%;
-    margin: 30px auto;
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .buy-page-bid-inputs {
+    gap: 10px;
+    /* Keep flex-wrap: nowrap to ensure fields stay side by side */
+  }
+
+  .buy-page-submit-button {
+    font-size: 16px;
     padding: 10px;
   }
 
-  .image-box {
-    height: 100px;
+  .buy-page-title {
+    font-size: 1.5rem;
   }
 
-  .user-title {
-    font-size: 18px;
+  .buy-page-price,
+  .buy-page-hostel,
+  .buy-page-description,
+  .buy-page-status,
+  .buy-page-seller {
+    font-size: 1rem;
   }
 
-  .submit-btn {
+  /* Specific adjustment for Description in mobile view */
+  @media (max-width: 768px) {
+    .buy-page-details .buy-page-detail-row.buy-page-description {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .buy-page-details .buy-page-detail-row.buy-page-description .buy-page-value {
+      margin-left: 0;
+    }
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .buy-page-container {
+    padding: 7vh 5vw;
+    /* margin: 20px auto; */
+  }
+
+  .buy-page-bid-inputs {
+    gap: 10px;
+    /* Keep fields side by side */
+  }
+
+  .buy-page-submit-button {
     font-size: 14px;
     padding: 8px;
+  }
+
+  .buy-page-title {
+    font-size: 1.2rem;
+  }
+
+  .buy-page-price,
+  .buy-page-hostel,
+  .buy-page-description,
+  .buy-page-status,
+  .buy-page-seller {
+    font-size: 0.9rem;
+  }
+
+  /* Specific adjustment for Description in small mobile view */
+  .buy-page-details .buy-page-detail-row.buy-page-description {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buy-page-details .buy-page-detail-row.buy-page-description .buy-page-value {
+    margin-left: 0;
   }
 }

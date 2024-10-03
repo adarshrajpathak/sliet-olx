@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './LoginPage.css';
 import Navbar from '../../components/navbar/Navbar';
@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts/auth/AuthContext';
 const LoginPage = () => {
   const { theme } = useTheme();
   const { login } = useAuth();
-
+  
   // State variables for form fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +28,7 @@ const LoginPage = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Function to validate email while typing
   const validateEmail = (value) => {
@@ -89,16 +90,23 @@ const LoginPage = () => {
         },
       });
 
+
       console.log('Login successful:', response.data);
-      login(response.data.user); // Store user in context
+      login({
+        user: response.data.foundUser, // user details
+        token: response.data.encodedToken, // JWT token
+      });
 
       // Set success message
       setSuccessMessage('Login successful! Redirecting...');
       setOpenSnackbar(true);
 
+      // Get the intended path from the state or default to home
+      const redirectTo = location.state?.from || '/';
       // Redirect to home page after a short delay
       setTimeout(() => {
-        navigate('/');
+      // Navigate to the intended path after successful login
+        navigate(redirectTo, { replace: true });
       }, 2000);
     } catch (err) {
       console.error('Login error:', err);

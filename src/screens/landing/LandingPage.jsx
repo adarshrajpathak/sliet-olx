@@ -14,7 +14,6 @@ import axios from 'axios';
 const LandingPage = () => {
   const { theme, toggleTheme } = useTheme();
   const { products, setProducts } = useProductList();
-  const { isAuthenticated, user, login, logout } = useAuth();
 
   // Fetch products when LandingPage mounts
   useEffect(() => {

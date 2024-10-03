@@ -1,0 +1,222 @@
+/* src/screens/buy_request/BuyRequestPage.css */
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Main Container for the Buy Request Page */
+  .buy-request-container {
+    min-height: 100vh;
+    padding: 10vh 5vw;
+    margin-top: 20px; /* To ensure it doesn't overlap with Navbar */
+    transition: color 0.3s ease;
+  }
+  
+  /* Light Theme */
+  .buy-request-container.light-mode {
+    color: #000000;
+    background-color: #f5f5f5;
+  }
+  
+  /* Dark Theme */
+  .buy-request-container.dark-mode {
+    color: #ffffff;
+    background-color: #1e1e1e;
+  }
+  
+  /* Page Title */
+  .buy-request-title {
+    margin-bottom: 40px;
+  }
+  
+  /* Buy Request Card */
+  .buy-request-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Light Theme Card */
+  .buy-request-card.light-mode {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Dark Theme Card */
+  .buy-request-card.dark-mode {
+    background-color: #2c2c2c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Product Image Section */
+  .buy-request-image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .buy-request-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .buy-request-image:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Product Information and Bids Section */
+  .buy-request-info-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Product Details */
+  .buy-request-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .buy-request-product-title {
+    font-weight: bold;
+    color: inherit;
+  }
+  
+  .buy-request-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .buy-request-label {
+    font-weight: bold;
+  }
+  
+  .buy-request-value {
+    /* No additional styling needed; inherits color */
+  }
+  
+  .buy-request-price {
+    font-weight: bold;
+    color: green;
+  }
+  
+  .buy-request-description,
+  .buy-request-status {
+    color: inherit;
+  }
+  
+  /* Status Coloring */
+  .status-sold {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .status-available {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* Bids Table */
+  .buy-request-bids-table {
+    margin-top: 20px;
+  }
+  
+  .buy-request-bids-table .MuiTypography-root {
+    margin-bottom: 10px;
+    padding: 0 0 0 20px;
+  }
+  
+  .buy-request-bids-table table {
+    width: 100%;
+  }
+  
+  .buy-request-bids-table th,
+  .buy-request-bids-table td {
+    color: inherit;
+  }
+  
+  .buy-request-bids-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .buy-request-container.dark-mode .buy-request-bids-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Highlight current user's row */
+  .current-user-row {
+    background-color: rgba(0, 123, 255, 0.2); /* Light blue background */
+  }
+  
+  .buy-request-container.dark-mode .current-user-row {
+    background-color: rgba(30, 144, 255, 0.3); /* Adjust for dark mode */
+  }
+  
+  /* Loading Container */
+  .buy-request-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  /* Responsive Styling */
+  
+  /* Tablet and Below */
+  @media (max-width: 1024px) {
+    .buy-request-card {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .buy-request-image-section,
+    .buy-request-info-section {
+      width: 100%;
+    }
+  
+    .buy-request-image {
+      max-width: 100%;
+    }
+  
+    .buy-request-info-section {
+      align-items: center;
+    }
+  }
+  
+  /* Mobile Devices */
+  @media (max-width: 768px) {
+    .buy-request-container {
+      padding: 7vh 5vw;
+    }
+  
+    .buy-request-card {
+      padding: 15px;
+    }
+  
+    .buy-request-detail-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .buy-request-label {
+      margin-bottom: 5px;
+    }
+  }
+  

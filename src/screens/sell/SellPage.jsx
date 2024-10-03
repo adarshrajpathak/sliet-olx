@@ -5,16 +5,18 @@ import axios from 'axios';
 import './SellPage.css'; // Ensure this path is correct
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
+import { useAuth } from '../../contexts/auth/AuthContext'; // Import useAuth for accessing user context
 
 const SellPage = () => {
   const { theme } = useTheme();
+  const { user,token } = useAuth(); // Get the user context
   const navigate = useNavigate();
 
   // State variables for form fields
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
 
   // State variables for validation errors
   const [titleError, setTitleError] = useState('');
@@ -23,9 +25,11 @@ const SellPage = () => {
   // State variables for API call
   const [apiMessage, setApiMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isImageUploading, setIsImageUploading] = useState(false);
 
   // Snackbar state
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
   // Handle Snackbar close
   const handleCloseSnackbar = () => {
@@ -33,8 +37,52 @@ const SellPage = () => {
   };
 
   // Handle image selection
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+  const handleImageChange = async (e) => {
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+      // Validate image size (should not exceed 12MB)
+      if (selectedImage.size > 1024 * 1024) { // 1MB = 1024 * 1024 bytes
+        setApiMessage('Image size cannot exceed 1MB!');
+        setSnackbarSeverity('error'); // Display as an error
+        setOpenSnackbar(true);
+        return;
+      }
+
+      // Upload image to Cloudinary
+      try {
+        setIsImageUploading(true);
+
+        const data = new FormData();
+        data.append('file', selectedImage);
+        data.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+
+        const response = await fetch(
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
+          {
+            method: 'POST',
+            body: data,
+          }
+        );
+
+        const result = await response.json();
+        if (result.secure_url) {
+          setImageUrl(result.secure_url);
+          setApiMessage('Image uploaded successfully!');
+          setSnackbarSeverity('success');
+          setOpenSnackbar(true);
+        } else {
+          setApiMessage('Image upload failed!');
+          setSnackbarSeverity('error');
+          setOpenSnackbar(true);
+        }
+      } catch (error) {
+        setApiMessage('Something went wrong. Please try again later.');
+        setSnackbarSeverity('error');
+        setOpenSnackbar(true);
+      } finally {
+        setIsImageUploading(false);
+      }
+    }
   };
 
   // Handle form submission
@@ -58,22 +106,23 @@ const SellPage = () => {
       setPriceError('');
     }
 
-    if (!isValid) return;
+    if (!isValid || !imageUrl) return;
 
-    // FormData for file upload
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('price', price);
-    if (image) formData.append('image', image);
+    // FormData for product details
+    const formData = {
+      name:title,
+      description,
+      stringPrice:price,
+      picture: imageUrl, // Use the Cloudinary URL
+    };
 
     try {
       setIsLoading(true);
-
-      // Make API call
+      // Make API call to list the product
       const response = await axios.post('http://localhost:5050/api/v1/products/create', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // Use JWT token from context
         },
       });
 
@@ -81,6 +130,7 @@ const SellPage = () => {
 
       // Set success message
       setApiMessage('Product listed successfully!');
+      setSnackbarSeverity('success');
       setOpenSnackbar(true);
 
       // Redirect to homepage after a delay
@@ -96,7 +146,7 @@ const SellPage = () => {
       } else {
         setApiMessage('An unexpected error occurred. Please try again later.');
       }
-
+      setSnackbarSeverity('error');
       setOpenSnackbar(true);
     } finally {
       setIsLoading(false);
@@ -119,9 +169,20 @@ const SellPage = () => {
               type="file"
               accept="image/*"
               onChange={handleImageChange}
+              disabled={isImageUploading}
             />
             <label htmlFor="file-input" className="upload-box">
-              {image ? <img src={URL.createObjectURL(image)} alt="Preview" className="uploaded-image" /> : 'Click to upload an image'}
+              {imageUrl ? (
+                <img src={imageUrl} alt="Preview" className="uploaded-image" />
+              ) : (
+                'Click to upload an image < 1MB '
+              )}
+              {/* Show CircularProgress centered within the upload box */}
+              {isImageUploading && (
+                <Box display="flex" justifyContent="center" alignItems="center" className="upload-progress">
+                  <CircularProgress size={24} color="inherit" />
+                </Box>
+              )}
             </label>
           </div>
 
@@ -174,7 +235,7 @@ const SellPage = () => {
           {apiMessage && (
             <Typography
               variant="body2"
-              color={apiMessage.includes('successfully') ? 'primary' : 'error'}
+              color={snackbarSeverity === 'success' ? 'primary' : 'error'}
               align="center"
               className="api-message"
             >
@@ -188,7 +249,7 @@ const SellPage = () => {
             variant="contained"
             size="large"
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || isImageUploading || !imageUrl}
             className="list-product-btn"
           >
             {isLoading ? <CircularProgress size={24} color="inherit" /> : 'List Product'}
@@ -196,7 +257,7 @@ const SellPage = () => {
 
           {/* Snackbar for API Messages */}
           <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-            <Alert onClose={handleCloseSnackbar} severity={apiMessage.includes('successfully') ? 'success' : 'error'} sx={{ width: '100%' }}>
+            <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
               {apiMessage}
             </Alert>
           </Snackbar>

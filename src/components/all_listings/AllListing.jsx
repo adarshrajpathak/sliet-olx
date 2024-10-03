@@ -10,7 +10,7 @@ function AllListing({ products }) {
       <h2 className="header">All Listings</h2>
       <div className="product-grid">
         {products.length > 0 ? (
-          products.map((product) => (
+          [...products].reverse().map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
         ) : (

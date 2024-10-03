@@ -4,7 +4,8 @@ import AuthReducer from './AuthReducer';
 // Initial state
 const initialState = {
   isAuthenticated: false,
-  user: null, // This will store user details including name
+  user: null,
+  token: null
 };
 
 // Create AuthContext

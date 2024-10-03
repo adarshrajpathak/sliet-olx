@@ -56,7 +56,7 @@ function Navbar() {
           variant="outlined"
           color="secondary"
           size="large"
-          onClick={() => handleClick('/buy')}
+          onClick={() => handleClick('/buy-request')}
         >
           Buy Request
         </MyButton>
@@ -130,7 +130,7 @@ function Navbar() {
           </button>
 
           <MyButton onClick={() => handleClick('/sell')}>Sell</MyButton>
-          <MyButton onClick={() => handleClick('/buy')}>Buy Request</MyButton>
+          <MyButton onClick={() => handleClick('/buy-request')}>Buy Request</MyButton>
           <MyButton onClick={() => handleClick('/sell-response')}>
             Sell Response
           </MyButton>

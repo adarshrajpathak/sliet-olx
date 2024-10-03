@@ -1,7 +1,5 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./contexts/auth/AuthContext"; 
 import LandingPage from "./screens/landing/LandingPage";
 import LoginPage from "./screens/login/LoginPage";
 import SignupPage from "./screens/signup/SignupPage";
@@ -13,6 +11,9 @@ import SellResponsePage from "./screens/sell_response/SellResponsePage";
 import BuyRequestPage from "./screens/buy_request/BuyRequestPage";
 import "./App.css";
 import CombinedProviders from "./contexts";
+import PrivateRoute from "./contexts/PrivateRoute";
+import BuyPage from "./screens/buy/BuyPage";
+
 function App() {
   return (
     <CombinedProviders>
@@ -23,10 +24,48 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/verify-otp" element={<OTPInputPage />} />
           <Route path="/otp-regenerate" element={<OTPResendPage />} />
-          <Route path="/sell" element={<Sell />} />
-          <Route path="/buy" element={<Buy />} />
-          <Route path="/sell-response" element={<SellResponsePage />} />
-          <Route path="/buy-response" element={<BuyRequestPage />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/sell"
+            element={
+              <PrivateRoute>
+                <Sell />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/buy"
+            element={
+              <PrivateRoute>
+                <Buy />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/sell-response"
+            element={
+              <PrivateRoute>
+                <SellResponsePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/buy-request"
+            element={
+              <PrivateRoute>
+                <BuyRequestPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/products/:id"
+            element={
+              <PrivateRoute>
+                <BuyPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Router>
     </CombinedProviders>

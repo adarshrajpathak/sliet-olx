@@ -16,6 +16,7 @@ const AdvancedCarousel = () => {
       tag: 'Join',
       date: '25 Sep 2024',
       title: 'Join Whatsapp Group',
+      title2: 'For Every New Product Notification',
       linkText: 'whatsapp.link',
       linkUrl: 'https://chat.whatsapp.com/your-group-link', // Replace with your actual WhatsApp group link
     },
@@ -23,7 +24,8 @@ const AdvancedCarousel = () => {
       image: secondImage,
       tag: 'Contribute',
       date: '01 Oct 2024',
-      title: 'Project is open Sourced, can help us improve',
+      title: 'Project is open source',
+      title2: 'Can help us improve',
       linkText: 'github.com',
       linkUrl: 'https://github.com/your-repo', // Replace with your actual GitHub repository link
     },
@@ -32,6 +34,7 @@ const AdvancedCarousel = () => {
       tag: 'Support',
       date: '03 Oct 2024',
       title: 'Support us monetarily',
+      title2: 'Via UPI',
       linkText: 'gpay link',
       linkUrl: 'https://pay.google.com/your-payment-link', // Replace with your actual Google Pay link
     },
@@ -98,6 +101,8 @@ const AdvancedCarousel = () => {
                   <span className="main-post__tag">{post.tag}</span>
                 </div>
                 <h1 className="main-post__title">{post.title}</h1>
+                <h3 className="main-post__published">{post.title2}</h3>
+                <br />
                 {/* Link without navigation icons */}
                 <a className="main-post__link" href={post.linkUrl} target="_blank" rel="noopener noreferrer">
                   <span className="main-post__link-text">{post.linkText}</span>

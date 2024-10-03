@@ -1,0 +1,224 @@
+/* src/screens/sell_response/SellResponsePage.css */
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Main Container for the Sell Response Page */
+  .sell-response-container {
+    min-height: 100vh;
+    padding: 10vh 5vw;
+    margin-top: 20px; /* To ensure it doesn't overlap with Navbar */
+    transition: color 0.3s ease;
+  }
+  
+  /* Light Theme */
+  .sell-response-container.light-mode {
+    color: #000000;
+    background-color: #f5f5f5;
+  }
+  
+  /* Dark Theme */
+  .sell-response-container.dark-mode {
+    color: #ffffff;
+    background-color: #1e1e1e;
+  }
+  
+  /* Page Title */
+  .sell-response-title {
+    margin-bottom: 40px;
+  }
+  
+  /* Sell Response Card */
+  .sell-response-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Light Theme Card */
+  .sell-response-card.light-mode {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Dark Theme Card */
+  .sell-response-card.dark-mode {
+    background-color: #2c2c2c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Product Image Section */
+  .sell-response-image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sell-response-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .sell-response-image:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Product Information and Bids Section */
+  .sell-response-info-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Product Details */
+  .sell-response-details {
+    /* Additional styling can be added here if needed */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sell-response-product-title {
+    font-weight: bold;
+    color: inherit;
+  }
+  
+  .sell-response-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .sell-response-label {
+    font-weight: bold;
+  }
+  
+  .sell-response-value {
+    /* No additional styling needed; inherits color */
+  }
+  
+  .sell-response-price {
+    font-weight: bold;
+    color: green;
+  }
+  
+  .sell-response-description,
+  .sell-response-status {
+    color: inherit;
+  }
+  
+  /* Status Coloring */
+  .status-sold {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .status-available {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* Bids Table */
+  .sell-response-bids-table {
+    margin-top: 20px;
+  }
+  
+  .sell-response-bids-table .MuiTypography-root {
+    margin-bottom: 10px;
+    padding: 0 0 0 20px;
+  }
+  
+  .sell-response-bids-table table {
+    width: 100%;
+  }
+  
+  .sell-response-bids-table th,
+  .sell-response-bids-table td {
+    color: inherit;
+  }
+  
+  .sell-response-bids-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .sell-response-container.dark-mode .sell-response-bids-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Mark as Sold Button */
+  .sell-response-sold-button {
+    margin-top: 20px;
+    align-self: flex-start;
+  }
+  
+  /* Loading Container */
+  .sell-response-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  /* Responsive Styling */
+  
+  /* Tablet and Below */
+  @media (max-width: 1024px) {
+    .sell-response-card {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .sell-response-image-section,
+    .sell-response-info-section {
+      width: 100%;
+    }
+  
+    .sell-response-image {
+      max-width: 100%;
+    }
+  
+    .sell-response-info-section {
+      align-items: center;
+    }
+  
+    .sell-response-sold-button {
+      align-self: center;
+    }
+  }
+  
+  /* Mobile Devices */
+  @media (max-width: 768px) {
+    .sell-response-container {
+      padding: 7vh 5vw;
+    }
+  
+    .sell-response-card {
+      padding: 15px;
+    }
+  
+    .sell-response-detail-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .sell-response-label {
+      margin-bottom: 5px;
+    }
+  }
+  
