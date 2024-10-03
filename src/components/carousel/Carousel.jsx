@@ -1,3 +1,5 @@
+// src/components/carousel/AdvancedCarousel.jsx
+
 import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css'; // Import the updated CSS styles
 import firstImage from '../../images/posterW1.png';
@@ -93,20 +95,27 @@ const AdvancedCarousel = () => {
                 index === postIndex ? 'main-post--active' : 'main-post--not-active'
               }`}
             >
-              <div className="main-post__image" style={{backgroundSize:'contain',backgroundColor:'black', backgroundPosition: 'right',}}>
-                <img src={post.image} alt={post.title} loading="lazy" />
-              </div>
-              <div className="main-post__content">
-                <div className="main-post__tag-wrapper">
-                  <span className="main-post__tag">{post.tag}</span>
+              <div className="main-post__content-wrapper">
+                <div className="main-post__content">
+                  <div className="main-post__tag-wrapper">
+                    <span className="main-post__tag">{post.tag}</span>
+                  </div>
+                  <h1 className="main-post__title">{post.title}</h1>
+                  <h3 className="main-post__published">{post.title2}</h3>
+                  <br />
+                  {/* Link without navigation icons */}
+                  <a
+                    className="main-post__link"
+                    href={post.linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="main-post__link-text">{post.linkText}</span>
+                  </a>
                 </div>
-                <h1 className="main-post__title">{post.title}</h1>
-                <h3 className="main-post__published">{post.title2}</h3>
-                <br />
-                {/* Link without navigation icons */}
-                <a className="main-post__link" href={post.linkUrl} target="_blank" rel="noopener noreferrer">
-                  <span className="main-post__link-text">{post.linkText}</span>
-                </a>
+              </div>
+              <div className="main-post__image">
+                <img src={post.image} alt={post.title} loading="lazy" />
               </div>
             </article>
           ))}

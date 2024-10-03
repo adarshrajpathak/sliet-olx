@@ -1,4 +1,4 @@
-/* Carousel.css */
+/* src/components/carousel/Carousel.css */
 
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
 
@@ -13,9 +13,11 @@ body {
 }
 
 .carousel {
-  /* Set carousel height to 40vh */
-  height: 40vh;
   position: relative;
+  width: 100%;
+  height: calc(40vh - 60px); /* Adjust height */
+  margin-top: 60px; /* Move carousel below navbar */
+  background-color: black; /* Set background color */
 }
 
 .progress-bar {
@@ -58,48 +60,40 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
-}
-.main-post__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  background-repeat: no-repeat; /* Ensure the background image does not repeat */
- opacity: 0.9;
+  display: flex;
+  flex-direction: column; /* Default for mobile */
 }
 
-.main-post__image img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: left; /* Align the image to the left */
-}
-
-.main-post__image::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.main-post__content-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-post__content {
-  position: absolute;
-  top: 40%;
-  left: 4%;
-  transform: translateY(-40%);
   color: #fff;
-  width: 90%;
+  padding: 20px;
+}
+
+.main-post__image {
+  flex: 1;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-post__image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .main-post__tag-wrapper {
   margin: 0;
   display: inline-flex;
-  /* overflow: hidden; */
 }
 
 .main-post__tag {
@@ -128,24 +122,9 @@ body {
   font-size: 0.9em;
 }
 
-/* Removed navigation icon styles */
-
-/* .main-post__link-icon--arrow {
-  margin-left: 12px;
-}
-
-.main-post__link-icon--play-btn {
-  margin-right: 12px;
-} */
-
 .main-post__link:hover .main-post__link-text {
   color: #00c224;
 }
-
-/* Also removed hover effect for navigation icons */
-/* .main-post__link:hover .main-post__link-icon--arrow path {
-  stroke: #c20000;
-} */
 
 .main-post--active {
   top: 0;
@@ -160,12 +139,13 @@ body {
 }
 
 .main-post.main-post--active .main-post__tag-wrapper {
-  width: 25%;
+  width: auto;
   transition: width 0.98s 1.9s;
 }
 
 .main-post.main-post--not-active .main-post__tag-wrapper {
   width: 0;
+  overflow: hidden;
   transition: width 0.3s 0.2s;
 }
 
@@ -270,29 +250,42 @@ body {
     width: 100%;
     z-index: 1;
   }
+
+  .main-post {
+    flex-direction: row; /* Arrange content and image side by side */
+  }
+
+  .main-post__content-wrapper,
+  .main-post__image {
+    flex: 1;
+    height: 100%;
+  }
+
+  .main-post__content {
+    padding: 40px;
+  }
+
+  .main-post__image {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-post__image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .main-post__content {
-    width: 45%;
+    padding: 60px;
   }
   .posts-wrapper {
     left: 80%;
     transform: translateX(-80%);
     max-width: 70%;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .main-post__image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: bottom left; /* Align the image to the bottom left */
   }
 }
