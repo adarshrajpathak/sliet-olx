@@ -11,7 +11,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
-
+import { Link } from 'react-router-dom';
 function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
@@ -26,11 +26,13 @@ function Navbar() {
   return (
     <nav className={`navbar ${theme === 'dark' ? 'dark-mode dark-mode-shadow' : 'light-mode light-mode-shadow'}`}>
       <div className="logo-container">
+      <Link to="/">
         <img
           src={theme === 'dark' ? blackLogo : whiteLogo}
           alt="SLIET OLX"
           className="logo-img"
         />
+        </Link>
         <button className="tagline-button">
           <span className="actual-text">SLIET OLX</span>
           <span aria-hidden="true" className="hover-text">
