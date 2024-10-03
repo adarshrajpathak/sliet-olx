@@ -20,7 +20,7 @@ const AdvancedCarousel = () => {
       title: 'Join Whatsapp Group',
       title2: 'For Every New Product Notification',
       linkText: 'whatsapp.link',
-      linkUrl: 'https://chat.whatsapp.com/your-group-link', // Replace with your actual WhatsApp group link
+      linkUrl: 'https://chat.whatsapp.com/your-group-link',
     },
     {
       image: secondImage,
@@ -29,7 +29,7 @@ const AdvancedCarousel = () => {
       title: 'Project is open source',
       title2: 'Can help us improve',
       linkText: 'github.com',
-      linkUrl: 'https://github.com/your-repo', // Replace with your actual GitHub repository link
+      linkUrl: 'https://github.com/your-repo',
     },
     {
       image: thirdImage,
@@ -38,28 +38,25 @@ const AdvancedCarousel = () => {
       title: 'Support us monetarily',
       title2: 'Via UPI',
       linkText: 'gpay link',
-      linkUrl: 'https://pay.google.com/your-payment-link', // Replace with your actual Google Pay link
+      linkUrl: 'https://pay.google.com/your-payment-link',
     },
   ];
 
   useEffect(() => {
-    // Clear any existing interval
     if (progressIntervalRef.current) {
       clearInterval(progressIntervalRef.current);
     }
 
-    // Start the progress interval
     progressIntervalRef.current = setInterval(() => {
       setProgress((prevProgress) => {
         if (prevProgress >= 100) {
-          // Move to the next post
           setPostIndex((prevIndex) => (prevIndex + 1) % postsData.length);
-          return 0; // Reset progress
+          return 0;
         } else {
           return prevProgress + 1;
         }
       });
-    }, 100); // Update progress every 100ms
+    }, 100);
 
     return () => {
       clearInterval(progressIntervalRef.current);
@@ -73,7 +70,6 @@ const AdvancedCarousel = () => {
     setPostIndex(index);
     setProgress(0);
 
-    // Re-enable clicks after 2.5 seconds (to match CSS transitions)
     setTimeout(() => {
       setDisableClicks(false);
     }, 2500);
@@ -103,7 +99,6 @@ const AdvancedCarousel = () => {
                   <h1 className="main-post__title">{post.title}</h1>
                   <h3 className="main-post__published">{post.title2}</h3>
                   <br />
-                  {/* Link without navigation icons */}
                   <a
                     className="main-post__link"
                     href={post.linkUrl}
