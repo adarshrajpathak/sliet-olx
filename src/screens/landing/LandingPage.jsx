@@ -28,7 +28,7 @@ const LandingPage = () => {
     };
 
     fetchProducts();
-  }, [products]);
+  }, []);
 
   return (
     <div className={`landing-min ${theme === 'dark' ? 'dark-mode' : 'light-mode'}`}>
