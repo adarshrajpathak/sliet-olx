@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Create an axios instance
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5050/api/v1', // Adjust baseURL as needed
+  baseURL: 'https://api.sliet.shop/api/v1', // Adjust baseURL as needed
 });
 
 // Add a request interceptor
