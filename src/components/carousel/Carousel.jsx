@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css'; // Import the updated CSS styles
 import firstImage from '../../images/poster2.png';
-import secondImage from '../../images/poster4.png';
+import secondImage from '../../images/postergit.png';
 import thirdImage from '../../images/foot5.png';
 
 const AdvancedCarousel = () => {
