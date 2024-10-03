@@ -3,10 +3,12 @@ import "./Footer.css";
 import adarshImage from "../../images/adarsh1.png"; // Replace with actual image path
 import cpyadavImage from "../../images/cp.jpeg"; // Replace with actual image path
 import dofeImage from "../../images/doge.png"; // Replace with actual image path
+import { useTheme } from '../../contexts/theme/ThemeContext';
 
 const Footer = () => {
+  const { theme } = useTheme();
   return (
-    <footer className="footer">
+    <footer className={`footer ${theme==='dark'?'dark-mode footer-dark-mode':'light-mode footer-light-mode'}`}>
 
       {/* Section 1: Navigation */}
       <div className="footer-section">

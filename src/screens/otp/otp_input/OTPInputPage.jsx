@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert, InputAdornment, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './OTPInputPage.css';
 import Navbar from '../../../components/navbar/Navbar';
@@ -11,6 +12,9 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 const OTPInputPage = () => {
   const { theme } = useTheme();
   const { user } = useAuth();
+  const location = useLocation();
+  const email = location.state?.email;
+  // console.log(email);
 
   // State variables for form fields
   const [otp, setOtp] = useState('');
@@ -60,7 +64,7 @@ const OTPInputPage = () => {
     // Prepare form data
     const formData = {
       otp: digitsOnly,
-      email: user?.email,
+      email: email,
     };
 
     try {
@@ -81,7 +85,7 @@ const OTPInputPage = () => {
 
       // Navigate to the Login page after a short delay
       setTimeout(() => {
-        navigate('/login');
+        navigate('/login', { state: { email: email } });
       }, 2000);
     } catch (err) {
       console.error('OTP verification error:', err);

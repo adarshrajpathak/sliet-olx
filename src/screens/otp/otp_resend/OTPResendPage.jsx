@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import './OTPResendPage.css'; // Ensure this path is correct based on your project structure
 import Navbar from '../../../components/navbar/Navbar';
 import { useTheme } from '../../../contexts/theme/ThemeContext'; // Import the useTheme hook
-import { useAuth } from '../../../contexts/auth/AuthContext'; // Import the useAuth hook
+// import { useAuth } from '../../../contexts/auth/AuthContext'; // Import the useAuth hook
 
 const OTPResendPage = () => {
   const { theme } = useTheme();
-  const { login } = useAuth(); // Get login function from Auth Context
+  // const { login } = useAuth(); // Get login function from Auth Context
 
   // State variables for form fields
   const [email, setEmail] = useState('');
@@ -69,16 +70,15 @@ const OTPResendPage = () => {
       console.log('OTP resend successful:', response.data);
 
       // Store user email in Auth Context
-      login({ email }); // Store email in context, not just from response
+      // login({ email }); // Store email in context, not just from response
 
       // Set success message
       setApiMessage(response.data.message || 'OTP sent successfully! Please check your email or SMS.');
       setOpenSnackbar(true);
 
-      // Delay before navigating to /verify page
       setTimeout(() => {
-        navigate('/verify-otp');
-      }, 2000); // 2000 milliseconds = 2 seconds
+        navigate('/verify-otp', { state: { email: email } });
+      }, 2000);
     } catch (err) {
       console.error('OTP resend error:', err);
 
@@ -102,8 +102,6 @@ const OTPResendPage = () => {
       return;
     }
 
-    // Store user email in Auth Context
-    login({ email });
 
     // Navigate to the OTP Verification page
     setTimeout(() => {

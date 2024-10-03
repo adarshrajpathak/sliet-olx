@@ -17,7 +17,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth(); // Get user from AuthContext
-  console.log(`${user?.user_name}cp`)
+  // console.log('user:',user?.user_name);
   const handleClick = (path) => {
     setIsMenuOpen(false); // Close menu on navigation
     navigate(path); // Navigate to the specified path
@@ -100,7 +100,7 @@ function Navbar() {
           >
             <PersonIcon className="icon-login" />
             &nbsp;<div className='logout_flex'>
-            <div>{user?.foundUser?.user_name || 'User'}</div> 
+            <div>{user?.user_name || 'User'}</div> 
             {/* Display user's name */}
             <div>Logout</div>
             </div>

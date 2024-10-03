@@ -10,9 +10,13 @@ import { useAuth } from '../../contexts/auth/AuthContext';
 const LoginPage = () => {
   const { theme } = useTheme();
   const { login } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const prevEmail = location.state?.email;
   
   // State variables for form fields
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(prevEmail);
   const [password, setPassword] = useState('');
 
   // State variables for validation errors
@@ -27,8 +31,6 @@ const LoginPage = () => {
   // Snackbar state
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  const navigate = useNavigate();
-  const location = useLocation();
 
   // Function to validate email while typing
   const validateEmail = (value) => {
@@ -91,7 +93,7 @@ const LoginPage = () => {
       });
 
 
-      console.log('Login successful:', response.data);
+      // console.log('Login successful:', response.data);
       login({
         user: response.data.foundUser, // user details
         token: response.data.encodedToken, // JWT token

@@ -5,11 +5,11 @@ import axios from 'axios';
 import './SignupPage.css';
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
-import { useAuth } from '../../contexts/auth/AuthContext';
+// import { useAuth } from '../../contexts/auth/AuthContext';
 
 const SignupPage = () => {
   const { theme } = useTheme();
-  const { login } = useAuth();
+  // const { login } = useAuth();
 
   // State variables for form fields
   const [email, setEmail] = useState('');
@@ -162,18 +162,18 @@ const SignupPage = () => {
         },
       });
 
-      console.log('Signup successful:', response.data);
+      // console.log('Signup successful:', response.data);
 
       const { email: userEmail, message, nextAction } = response.data;
 
-      login({ email: userEmail });
+      // login({ email: userEmail });
 
       // Set success message instead of apiError
       setSuccessMessage(message || 'Signup successful!');
       setOpenSnackbar(true);
 
       setTimeout(() => {
-        navigate(nextAction || '/verify-otp');
+        navigate('/verify-otp', { state: { email: userEmail } });
       }, 2000);
     } catch (err) {
       console.error('Signup error:', err);

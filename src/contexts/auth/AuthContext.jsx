@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   // Action creators for login and logout
   const login = (userData) => {
     // Log the received userData to make sure it contains foundUser and user_name
-    console.log("login userData: ", userData);
+    // console.log("login userData: ", userData);
 
     // Dispatching userData correctly
     dispatch({ type: 'LOGIN', payload: userData });
