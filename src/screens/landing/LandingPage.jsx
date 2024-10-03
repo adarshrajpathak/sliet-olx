@@ -9,7 +9,7 @@ import { useProductList } from '../../contexts/product_list/ProductListContext';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import Carousel from '../../components/carousel/Carousel';
 import Footer from '../../components/footer/Footer';
-import axios from 'axios';
+import axiosInstance from '../../axiosInstance';
 
 const LandingPage = () => {
   const { theme, toggleTheme } = useTheme();
@@ -19,7 +19,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5050/api/v1/products/');
+        const response = await axiosInstance.get('/products');
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);

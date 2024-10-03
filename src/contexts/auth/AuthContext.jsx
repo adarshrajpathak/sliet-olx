@@ -1,12 +1,22 @@
-import React, { createContext, useReducer, useContext } from 'react';
+// src/contexts/auth/AuthContext.jsx
+
+import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import AuthReducer from './AuthReducer';
 
-// Initial state
+// Read initial state from localStorage
 const initialState = {
   isAuthenticated: false,
   user: null,
-  token: null
+  token: null,
 };
+
+const localState = localStorage.getItem('authState');
+if (localState) {
+  const parsedState = JSON.parse(localState);
+  initialState.isAuthenticated = parsedState.isAuthenticated;
+  initialState.user = parsedState.user;
+  initialState.token = parsedState.token;
+}
 
 // Create AuthContext
 const AuthContext = createContext();
@@ -15,12 +25,13 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
+  // Persist auth state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('authState', JSON.stringify(state));
+  }, [state]);
+
   // Action creators for login and logout
   const login = (userData) => {
-    // Log the received userData to make sure it contains foundUser and user_name
-    // console.log("login userData: ", userData);
-
-    // Dispatching userData correctly
     dispatch({ type: 'LOGIN', payload: userData });
   };
 

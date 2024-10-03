@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert, InputAdornment, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../../axiosInstance';
 import './OTPInputPage.css';
 import Navbar from '../../../components/navbar/Navbar';
 import { useTheme } from '../../../contexts/theme/ThemeContext';
-import { useAuth } from '../../../contexts/auth/AuthContext';
+// import { useAuth } from '../../../contexts/auth/AuthContext';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const OTPInputPage = () => {
   const { theme } = useTheme();
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const location = useLocation();
   const email = location.state?.email;
-  // console.log(email);
 
   // State variables for form fields
   const [otp, setOtp] = useState('');
@@ -71,7 +70,7 @@ const OTPInputPage = () => {
       setIsLoading(true);
 
       // Make API call to verify OTP
-      const response = await axios.post('http://localhost:5050/api/v1/otps/verify-otp', formData, {
+      const response = await axiosInstance.post('/otps/verify-otp', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -111,7 +110,7 @@ const OTPInputPage = () => {
 
   // Handle Resend OTP
   const handleResendOtp = async () => {
-    if (!user?.email) {
+    if (!email) {
       setApiError('User email not found. Please signup again.');
       setOpenSnackbar(true);
       return;
@@ -121,7 +120,7 @@ const OTPInputPage = () => {
       setIsLoading(true);
 
       // Make API call to resend OTP
-      const response = await axios.post('http://localhost:5050/api/v1/otps/regenerate-otp', { email: user.email }, {
+      const response = await axiosInstance.post('/otps/regenerate-otp', { email: email }, {
         headers: {
           'Content-Type': 'application/json',
         },

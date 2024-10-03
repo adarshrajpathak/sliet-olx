@@ -11,7 +11,7 @@ import {
   Snackbar,
   Alert,
 } from '@mui/material';
-import axios from 'axios';
+import axiosInstance from '../../axiosInstance';
 import './BuyPage.css';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import Navbar from '../../components/navbar/Navbar';
@@ -37,11 +37,7 @@ const BuyPage = () => {
     // Fetch product details from the backend
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5050/api/v1/products/${id}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
+        const response = await axiosInstance.get(`/products/${id}`);
         setProduct(response.data.product);
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -79,8 +75,8 @@ const BuyPage = () => {
 
     try {
       // Send bid data to the backend
-      const response = await axios.post(
-        'http://localhost:5050/api/v1/products/buy',
+      const response = await axiosInstance.post(
+        '/products/buy',
         {
           productId: id,
           buyer_min: parseFloat(minBid),
@@ -89,7 +85,6 @@ const BuyPage = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
           },
         }
       );

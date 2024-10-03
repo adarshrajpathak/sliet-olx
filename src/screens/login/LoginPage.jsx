@@ -1,7 +1,17 @@
+// src/pages/login/LoginPage.jsx
+
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert } from '@mui/material';
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  CircularProgress,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../axiosInstance';
 import './LoginPage.css';
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
@@ -14,9 +24,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const prevEmail = location.state?.email;
-  
+
   // State variables for form fields
-  const [email, setEmail] = useState(prevEmail);
+  const [email, setEmail] = useState(prevEmail || '');
   const [password, setPassword] = useState('');
 
   // State variables for validation errors
@@ -30,7 +40,6 @@ const LoginPage = () => {
 
   // Snackbar state
   const [openSnackbar, setOpenSnackbar] = useState(false);
-
 
   // Function to validate email while typing
   const validateEmail = (value) => {
@@ -86,12 +95,15 @@ const LoginPage = () => {
       setIsLoading(true);
 
       // Make API call
-      const response = await axios.post('http://localhost:5050/api/v1/users/create-session', formData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
+      const response = await axiosInstance.post(
+        '/users/create-session',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       // console.log('Login successful:', response.data);
       login({
@@ -107,7 +119,7 @@ const LoginPage = () => {
       const redirectTo = location.state?.from || '/';
       // Redirect to home page after a short delay
       setTimeout(() => {
-      // Navigate to the intended path after successful login
+        // Navigate to the intended path after successful login
         navigate(redirectTo, { replace: true });
       }, 2000);
     } catch (err) {
@@ -141,10 +153,15 @@ const LoginPage = () => {
     navigate('/otp-regenerate');
   };
 
+  // Navigate to forgot password page
+  const handleNavigateToForgotPassword = () => {
+    navigate('/forgot-password');
+  };
+
   return (
     <>
       <Navbar />
-      <Box 
+      <Box
         className={`login-container ${theme === 'dark' ? 'dark-mode' : 'light-mode'}`}
       >
         <Box
@@ -174,6 +191,17 @@ const LoginPage = () => {
             }}
           />
 
+          {/* Forgot Password Link */}
+          <Box className="forgot-password-container">
+            <Typography
+              variant="body2"
+              className="forgot-password-link"
+              onClick={handleNavigateToForgotPassword}
+            >
+              Forgot Password?
+            </Typography>
+          </Box>
+
           {/* Password Field */}
           <TextField
             fullWidth
@@ -195,7 +223,12 @@ const LoginPage = () => {
 
           {/* API Error or Success Message */}
           {(apiError || successMessage) && (
-            <Typography variant="body2" color={successMessage ? 'primary' : 'error'} align="center" className="api-message">
+            <Typography
+              variant="body2"
+              color={successMessage ? 'primary' : 'error'}
+              align="center"
+              className="api-message"
+            >
               {successMessage || apiError}
             </Typography>
           )}
@@ -214,17 +247,27 @@ const LoginPage = () => {
 
           {/* Signup Hyperlink */}
           <Typography variant="body2" align="center" className="signup-link">
-            Don't have an account? <span className="signup-hyperlink" onClick={handleNavigateToSignup}>Signup</span>
+            Don't have an account?{' '}
+            <span className="signup-hyperlink" onClick={handleNavigateToSignup}>
+              Signup
+            </span>
           </Typography>
 
           {/* Verify Email Hyperlink */}
           <Typography variant="body2" align="center" className="signup-link">
-            Haven't Verified your Email? <span className="signup-hyperlink" onClick={handleNavigateToVerify}>Verify Email</span>
+            Haven't Verified your Email?{' '}
+            <span className="signup-hyperlink" onClick={handleNavigateToVerify}>
+              Verify Email
+            </span>
           </Typography>
 
           {/* Snackbar for API Messages */}
           <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-            <Alert onClose={handleCloseSnackbar} severity={successMessage ? 'success' : 'error'} sx={{ width: '100%' }}>
+            <Alert
+              onClose={handleCloseSnackbar}
+              severity={successMessage ? 'success' : 'error'}
+              sx={{ width: '100%' }}
+            >
               {successMessage || apiError}
             </Alert>
           </Snackbar>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
+import axiosInstance from '../../../axiosInstance';
 import './OTPResendPage.css'; // Ensure this path is correct based on your project structure
 import Navbar from '../../../components/navbar/Navbar';
 import { useTheme } from '../../../contexts/theme/ThemeContext'; // Import the useTheme hook
@@ -60,7 +60,7 @@ const OTPResendPage = () => {
       setIsLoading(true); // Start loading
 
       // Make API call to regenerate OTP
-      const response = await axios.post('http://localhost:5050/api/v1/otps/regenerate-otp', formData, {
+      const response = await axiosInstance.post('/otps/regenerate-otp', formData, {
         headers: {
           'Content-Type': 'application/json',
         },

@@ -1,7 +1,7 @@
 // src/screens/buy_request/BuyRequestPage.jsx
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../axiosInstance';
 import './BuyRequestPage.css';
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
@@ -33,11 +33,7 @@ const BuyRequestPage = () => {
     // Fetch the products the user has bid on
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5050/api/v1/dashboards/buy-request', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axiosInstance.get('/dashboards/buy-request');
 
         // Sort bids in each product by buyer_max in descending order
         const productsWithSortedBids = response.data.products.map((product) => {

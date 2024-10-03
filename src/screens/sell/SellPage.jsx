@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../axiosInstance';
 import './SellPage.css'; // Ensure this path is correct
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
@@ -119,10 +119,9 @@ const SellPage = () => {
     try {
       setIsLoading(true);
       // Make API call to list the product
-      const response = await axios.post('http://localhost:5050/api/v1/products/create', formData, {
+      const response = await axiosInstance.post('/products/create', formData, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Use JWT token from context
         },
       });
 

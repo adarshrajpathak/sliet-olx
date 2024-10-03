@@ -1,11 +1,12 @@
-// ThemeContext.jsx
+// src/contexts/theme/ThemeContext.jsx
 
-import React, { createContext, useReducer, useContext } from 'react';
+import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import ThemeReducer from './ThemeReducer';
 
-// Initial state
+// Read initial theme from localStorage or default to 'light'
+const localTheme = localStorage.getItem('theme');
 const initialState = {
-  theme: 'light', // 'light' or 'dark'
+  theme: localTheme ? localTheme : 'light',
 };
 
 // Create ThemeContext
@@ -14,6 +15,11 @@ const ThemeContext = createContext();
 // ThemeProvider component
 export const ThemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ThemeReducer, initialState);
+
+  // Persist theme to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('theme', state.theme);
+  }, [state.theme]);
 
   // Action creators
   const setLightTheme = () => {

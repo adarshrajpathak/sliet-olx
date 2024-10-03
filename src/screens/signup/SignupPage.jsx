@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, CircularProgress, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../axiosInstance';
 import './SignupPage.css';
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
@@ -156,7 +156,7 @@ const SignupPage = () => {
     try {
       setIsLoading(true);
 
-      const response = await axios.post('http://localhost:5050/api/v1/users/create', formData, {
+      const response = await axiosInstance.post('/users/create', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -164,7 +164,7 @@ const SignupPage = () => {
 
       // console.log('Signup successful:', response.data);
 
-      const { email: userEmail, message, nextAction } = response.data;
+      const { email, message, nextAction } = response.data;
 
       // login({ email: userEmail });
 
@@ -173,7 +173,7 @@ const SignupPage = () => {
       setOpenSnackbar(true);
 
       setTimeout(() => {
-        navigate('/verify-otp', { state: { email: userEmail } });
+        navigate('/verify-otp', { state: { email: email } });
       }, 2000);
     } catch (err) {
       console.error('Signup error:', err);

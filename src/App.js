@@ -13,6 +13,7 @@ import "./App.css";
 import CombinedProviders from "./contexts";
 import PrivateRoute from "./contexts/PrivateRoute";
 import BuyPage from "./screens/buy/BuyPage";
+import FrogetPassPage from "./screens/forget_pass/ForgetPassPage";
 import Error from "./components/error/error"
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path='/forgot-password' element={<FrogetPassPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/verify-otp" element={<OTPInputPage />} />
           <Route path="/otp-regenerate" element={<OTPResendPage />} />

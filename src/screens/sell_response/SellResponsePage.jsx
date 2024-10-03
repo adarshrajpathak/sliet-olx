@@ -1,7 +1,7 @@
 // src/screens/sell_response/SellResponsePage.jsx
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../axiosInstance';
 import './SellResponsePage.css';
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
@@ -33,11 +33,7 @@ const SellResponsePage = () => {
     // Fetch the user's products for sale
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5050/api/v1/dashboards/sell-response', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axiosInstance.get('/dashboards/sell-response');
 
         // Process the products to sort the bids based on buyer_max in descending order
         const productsWithSortedBids = response.data.products.map((product) => {
@@ -67,14 +63,9 @@ const SellResponsePage = () => {
   // Handle marking a product as sold
   const handleMarkAsSold = async (productId) => {
     try {
-      const response = await axios.post(
-        'http://localhost:5050/api/v1/products/sold',
-        { productId },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      const response = await axiosInstance.post(
+        '/products/sold',
+        { productId }
       );
 
       // Update the product's status in the state
