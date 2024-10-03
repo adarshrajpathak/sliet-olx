@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css'; // Import the updated CSS styles
-import firstImage from '../../images/foot5.png';
-import secondImage from '../../images/foot5.png';
+import firstImage from '../../images/poster2.png';
+import secondImage from '../../images/poster4.png';
 import thirdImage from '../../images/foot5.png';
 
 const AdvancedCarousel = () => {
@@ -93,7 +93,7 @@ const AdvancedCarousel = () => {
                 index === postIndex ? 'main-post--active' : 'main-post--not-active'
               }`}
             >
-              <div className="main-post__image">
+              <div className="main-post__image" style={{backgroundSize:'contain',backgroundColor:'black', backgroundPosition: 'right',}}>
                 <img src={post.image} alt={post.title} loading="lazy" />
               </div>
               <div className="main-post__content">
