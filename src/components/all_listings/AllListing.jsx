@@ -14,7 +14,7 @@ function AllListing({ products }) {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <p>No listings available.</p>
+          <p className='no-listing'>No listings available.</p>
         )}
       </div>
     </div>

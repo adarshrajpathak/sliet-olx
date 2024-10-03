@@ -39,7 +39,12 @@ body {
   padding: 0 10px; /* Horizontal padding */
 }
 
+.no-listing{
+  min-height: 20vh;
+  padding :0 30px;
+}
 /* Responsive Adjustments */
+
 
 /* Tablets */
 @media (max-width: 1024px) {
@@ -67,4 +72,8 @@ body {
     font-size: 1.6em; /* Smaller font size for mobile */
     margin-bottom: 10px; /* Tighter spacing */
   }
+  .no-listing{
+    padding: 0 5px;
+  }
 }
+

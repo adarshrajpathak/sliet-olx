@@ -14,7 +14,9 @@ import CombinedProviders from "./contexts";
 import PrivateRoute from "./contexts/PrivateRoute";
 import BuyPage from "./screens/buy/BuyPage";
 import FrogetPassPage from "./screens/forget_pass/ForgetPassPage";
-import Error from "./components/error/error"
+import NotFoundPage from "./components/404/NotFoundPage"
+import UpiQRPage from "./screens/upi/UpiQRPage";
+
 function App() {
   return (
     <CombinedProviders>
@@ -26,7 +28,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/verify-otp" element={<OTPInputPage />} />
           <Route path="/otp-regenerate" element={<OTPResendPage />} />
-          <Route path="/error" element={<Error />} />
+          <Route path="/upi-qr-code-page" element={<UpiQRPage/>}/>
           {/* Protected Routes */}
           <Route
             path="/sell"
@@ -68,6 +70,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </CombinedProviders>

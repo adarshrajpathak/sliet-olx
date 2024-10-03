@@ -1,0 +1,77 @@
+/* NotFoundPage.css */
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.not-found-content {
+
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  /* background: transparent; */
+}
+
+.not-found-code {
+  font-size: 8rem;
+  color: #3a77ff;
+  margin: 0;
+}
+
+.doge-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0px 20px;
+}
+
+.doge-message {
+  font-size: 1.5rem;
+  /* background-color: #f9f9f9; */
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: inline-block;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.not-found-title {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.not-found-text {
+  color: #3a77ff;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.back-home-button {
+  color: #3a77ff;
+  border: 2px solid #3a77ff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 25px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.back-home-button:hover {
+  background-color: #3a77ff;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* Dark and Light Mode Styles */
+.dark-mode .not-found-content {
+  color: #fff;
+  /* background-color: rgba(25, 27, 33, 0.9); */
+}
+
+.light-mode .not-found-content {
+  color: #000;
+  /* background-color: rgba(255, 255, 255, 0.9); */
+}

@@ -1,0 +1,60 @@
+/* UpiQRPage.css */
+.upi-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .upi-content {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    max-width: 500px;
+    background: transparent;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .upi-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #3a77ff;
+  }
+  
+  .upi-description {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .qr-container {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 12px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .qr-code-image {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+  }
+  
+  .upi-instruction {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #3a77ff;
+  }
+  
+  /* Dark and Light Mode Styles */
+  .dark-mode .upi-content {
+    color: #fff;
+    /* background-color: rgba(25, 27, 33, 0.9); */
+  }
+  
+  .light-mode .upi-content {
+    color: #000;
+    /* background-color: rgba(255, 255, 255, 0.9); */
+  }
+  

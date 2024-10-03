@@ -28,10 +28,10 @@ const LandingPage = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [products]);
 
   return (
-    <div className={theme === 'dark' ? 'dark-mode' : 'light-mode'}>
+    <div className={`landing-min ${theme === 'dark' ? 'dark-mode' : 'light-mode'}`}>
       <Navbar />
       <Carousel />
       <ProductList products={products} />

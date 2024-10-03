@@ -1,6 +1,7 @@
 // src/components/carousel/AdvancedCarousel.jsx
 
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './Carousel.css'; // Import the updated CSS styles
 import firstImage from '../../images/posterW1.png';
 import secondImage from '../../images/postergit.png';
@@ -37,8 +38,8 @@ const AdvancedCarousel = () => {
       date: '03 Oct 2024',
       title: 'Support us monetarily',
       title2: 'Via UPI',
-      linkText: 'gpay link',
-      linkUrl: '8409986252@axisb',
+      linkText: 'UPI QR',
+      linkUrl: '/upi-qr-code-page',    
     },
   ];
 
@@ -99,14 +100,23 @@ const AdvancedCarousel = () => {
                   <h1 className="main-post__title">{post.title}</h1>
                   <h3 className="main-post__published">{post.title2}</h3>
                   <br />
-                  <a
-                    className="main-post__link"
-                    href={post.linkUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="main-post__link-text">{post.linkText}</span>
-                  </a>
+                  {post.linkUrl.startsWith('http') ? (
+                    <a
+                      className="main-post__link"
+                      href={post.linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="main-post__link-text">{post.linkText}</span>
+                    </a>
+                  ) : (
+                    <Link
+                      className="main-post__link"
+                      to={post.linkUrl}
+                    >
+                      <span className="main-post__link-text">{post.linkText}</span>
+                    </Link>
+                  )}
                 </div>
               </div>
               <div className="main-post__image">
