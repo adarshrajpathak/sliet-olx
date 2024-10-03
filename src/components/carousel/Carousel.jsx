@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css'; // Import the updated CSS styles
 import firstImage from '../../images/poster2.png';
 import secondImage from '../../images/postergit.png';
-import thirdImage from '../../images/foot5.png';
+import thirdImage from '../../images/upi.png';
 
 const AdvancedCarousel = () => {
   const [postIndex, setPostIndex] = useState(0);
