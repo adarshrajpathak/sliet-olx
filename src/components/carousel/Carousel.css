@@ -67,6 +67,7 @@ body {
   height: 100%;
   bottom: 0;
   background-repeat: no-repeat; /* Ensure the background image does not repeat */
+ opacity: 0.9;
 }
 
 .main-post__image img {

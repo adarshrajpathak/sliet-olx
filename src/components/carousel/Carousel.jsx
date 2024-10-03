@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css'; // Import the updated CSS styles
-import firstImage from '../../images/poster2.png';
+import firstImage from '../../images/posterW.png';
 import secondImage from '../../images/postergit.png';
 import thirdImage from '../../images/upi.png';
 
