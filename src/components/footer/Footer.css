@@ -9,7 +9,7 @@
   justify-content: space-between; /* Space sections evenly */
   align-items: center;
   flex-wrap: wrap; /* Ensure it wraps on smaller screens */
-/* background-image: url("../../images/foot5.png"); */
+
 }
 .footer-dark-mode{
   background-image: url("https://www.transparenttextures.com/patterns/brilliant.png");

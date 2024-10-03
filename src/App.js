@@ -13,7 +13,7 @@ import "./App.css";
 import CombinedProviders from "./contexts";
 import PrivateRoute from "./contexts/PrivateRoute";
 import BuyPage from "./screens/buy/BuyPage";
-
+import Error from "./components/error/error"
 function App() {
   return (
     <CombinedProviders>
@@ -24,7 +24,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/verify-otp" element={<OTPInputPage />} />
           <Route path="/otp-regenerate" element={<OTPResendPage />} />
-
+          <Route path="/error" element={<Error />} />
           {/* Protected Routes */}
           <Route
             path="/sell"

@@ -1,0 +1,49 @@
+/* NotFound.css */
+.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #f9f9f9; */
+    background-image: url("../../images/foot5.png");
+  }
+  
+  .content {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+ background: transparent;
+    /* background-image: url("../../images/foot5.png"); */
+  }
+  
+  .error-code {
+    font-size: 10rem;
+    color: #3a77ff;
+    margin: 0;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #3a77ff;
+    margin-bottom: 2rem;
+  }
+  
+  .home-button {
+    /* background-color: transparent; */
+    color: #3a77ff;
+    border: 2px solid #3a77ff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 25px;
+  }
+  
+  .home-button:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
