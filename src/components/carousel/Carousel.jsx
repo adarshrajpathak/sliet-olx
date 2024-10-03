@@ -20,7 +20,7 @@ const AdvancedCarousel = () => {
       title: 'Join Whatsapp Group',
       title2: 'For Every New Product Notification',
       linkText: 'whatsapp.link',
-      linkUrl: 'https://chat.whatsapp.com/your-group-link',
+      linkUrl: 'https://chat.whatsapp.com/DnVP8qYp26G4Gt1RtCdZCK',
     },
     {
       image: secondImage,
@@ -29,7 +29,7 @@ const AdvancedCarousel = () => {
       title: 'Project is open source',
       title2: 'Can help us improve',
       linkText: 'github.com',
-      linkUrl: 'https://github.com/your-repo',
+      linkUrl: 'https://github.com/sliet-olx',
     },
     {
       image: thirdImage,
@@ -38,7 +38,7 @@ const AdvancedCarousel = () => {
       title: 'Support us monetarily',
       title2: 'Via UPI',
       linkText: 'gpay link',
-      linkUrl: 'https://pay.google.com/your-payment-link',
+      linkUrl: '8409986252@axisb',
     },
   ];
 
