@@ -8,7 +8,7 @@ import { useTheme } from '../../contexts/theme/ThemeContext';
 import { useProductList } from '../../contexts/product_list/ProductListContext';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import Carousel from '../../components/carousel/Carousel';
-import Footer from "../../components/footer/Footer";
+import Footer from '../../components/footer/Footer';
 import axios from 'axios';
 
 const LandingPage = () => {

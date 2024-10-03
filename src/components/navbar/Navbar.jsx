@@ -1,15 +1,12 @@
-// Navbar.jsx
-
 import React, { useState } from 'react';
 import './Navbar.css';
-import MyButton from '../button/Button'; // Adjust the path as needed
+import MyButton from '../button/Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth/AuthContext';
 import blackLogo from '../../images/dark_sliet-olx.png';
 import whiteLogo from '../../images/light_sliet-olx.png';
 import { useTheme } from '../../contexts/theme/ThemeContext';
 
-// Import Material Icons
 import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
@@ -19,8 +16,8 @@ function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth(); // Get isAuthenticated and logout from AuthContext
-
+  const { isAuthenticated, user, logout } = useAuth(); // Get user from AuthContext
+  console.log(`${user?.user_name}cp`)
   const handleClick = (path) => {
     setIsMenuOpen(false); // Close menu on navigation
     navigate(path); // Navigate to the specified path
@@ -42,9 +39,7 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Desktop Menu */}
       <div className={`menu ${isMenuOpen ? 'open' : ''} ${theme === 'dark' ? 'dark-mode' : 'light-mode'}`}>
-        {/* Theme Toggle Icon */}
         <button
           className="icon-button"
           onClick={toggleTheme}
@@ -84,7 +79,6 @@ function Navbar() {
           Sell
         </MyButton>
 
-        {/* Login/Register or Logout Button */}
         {!isAuthenticated ? (
           <button
             className="boton-elegante"
@@ -97,17 +91,20 @@ function Navbar() {
           <button
             className="boton-elegante"
             onClick={() => {
-              logout(); // Call the logout function
-              handleClick('/'); // Navigate to home or landing page after logout
+              logout();
+              handleClick('/');
             }}
           >
             <PersonIcon className="icon-login" />
-            &nbsp;Logout
+            &nbsp;<div className='logout_flex'>
+            <div>{user?.foundUser?.user_name || 'User'}</div> 
+            {/* Display user's name */}
+            <div>Logout</div>
+            </div>
           </button>
         )}
       </div>
 
-      {/* Hamburger Menu */}
       <div
         className={`hamburger ${theme === 'dark' ? 'dark-bg' : 'light-bg'}`}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -118,10 +115,8 @@ function Navbar() {
         <div className={`bar ${isMenuOpen ? 'change' : ''}`}></div>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className={`mobile-menu ${theme === 'dark' ? 'dark-bg' : 'light-bg'}`}>
-          {/* Theme Toggle Icon */}
           <button
             className="icon-button"
             onClick={toggleTheme}
@@ -152,7 +147,8 @@ function Navbar() {
               }}
             >
               <PersonIcon className="icon-login" />
-              &nbsp;Logout
+              &nbsp;<div>{user?.foundUser?.user_name || 'User'}</div>
+              <div>Logout</div>
             </MyButton>
           )}
         </div>

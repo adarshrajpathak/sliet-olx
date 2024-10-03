@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Carousel.css'; // Import the updated CSS styles
-import firstImage from '../../images/main1.png';
-import secondImage from '../../images/main2.jpg';
-import thirdImage from '../../images/main3.png';
+import firstImage from '../../images/foot5.png';
+import secondImage from '../../images/foot5.png';
+import thirdImage from '../../images/foot5.png';
 
 const AdvancedCarousel = () => {
   const [postIndex, setPostIndex] = useState(0);
@@ -15,7 +15,7 @@ const AdvancedCarousel = () => {
       image: firstImage,
       tag: 'Join',
       date: '25 Sep 2024',
-      title: 'Join Whatsapp Group to see the magic',
+      title: 'Join Whatsapp Group',
       linkText: 'whatsapp.link',
       linkUrl: 'https://chat.whatsapp.com/your-group-link', // Replace with your actual WhatsApp group link
     },
