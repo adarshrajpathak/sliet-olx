@@ -31,20 +31,6 @@ axiosInstance.interceptors.request.use(
       return Promise.reject(error);
     }
 );
-
-// Function to inject navigation (use this in App.js or wherever you set up Axios globally)
-export const injectNavigation = (navigate) => {
-  axiosInstance.interceptors.response.use(
-    (response) => response,
-    (error) => {
-      if (error.response && error.response.status === 401) {
-        console.error('Unauthorized request. Redirecting to login.');
-        localStorage.removeItem('authState'); // Clear the token
-        navigate('/login'); // Use navigate for React SPA routing
-      }
-      return Promise.reject(error);
-    }
-  );
-};
+  
 
 export default axiosInstance;
