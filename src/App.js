@@ -16,8 +16,15 @@ import BuyPage from "./screens/buy/BuyPage";
 import FrogetPassPage from "./screens/forget_pass/ForgetPassPage";
 import NotFoundPage from "./components/404/NotFoundPage"
 import UpiQRPage from "./screens/upi/UpiQRPage";
+import { useNavigate } from 'react-router-dom';
+import axiosInstance, { injectNavigation } from './axiosInstance';
 
 function App() {
+  const navigate = useNavigate();
+  // Inject navigation into axios interceptors
+  React.useEffect(() => {
+    injectNavigation(navigate);
+  }, [navigate]);
   return (
     <CombinedProviders>
       <Router>
