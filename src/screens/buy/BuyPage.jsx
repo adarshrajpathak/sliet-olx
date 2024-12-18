@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 
 const BuyPage = () => {
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { token, logout } = useAuth();
   const { id } = useParams(); // Get the product ID from URL
   const [product, setProduct] = useState(null);
   const [minBid, setMinBid] = useState('');
@@ -40,17 +40,23 @@ const BuyPage = () => {
         const response = await axiosInstance.get(`/products/${id}`);
         setProduct(response.data.product);
       } catch (error) {
-        console.error('Error fetching product:', error);
-        setApiMessage('Failed to load product details.');
-        setSnackbarSeverity('error');
-        setOpenSnackbar(true);
+        // Check for JWT expiration or invalid session
+        if (error.response && (error.response.status === 498 || error.response.status === 440)) {
+          logout();
+          navigate('/login');
+        } else {
+          console.error('Error fetching product:', error);
+          setApiMessage('Failed to load product details.');
+          setSnackbarSeverity('error');
+          setOpenSnackbar(true);
+        }
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchProduct();
-  }, [id, token]);
+  }, [id, token, logout, navigate]);
 
   const handleBidSubmit = async (e) => {
     e.preventDefault();
@@ -100,9 +106,15 @@ const BuyPage = () => {
       }, 2000);
     } catch (error) {
       console.error('Error placing bid:', error);
-      setApiMessage(error.response?.data?.message || 'Failed to place bid.');
-      setSnackbarSeverity('error');
-      setOpenSnackbar(true);
+      // Check for JWT expiration or invalid session
+      if (error.response && (error.response.status === 498 || error.response.status === 440)) {
+        logout();
+        navigate('/login');
+      } else {
+        setApiMessage(error.response?.data?.message || 'Failed to place bid.');
+        setSnackbarSeverity('error');
+        setOpenSnackbar(true);
+      }
     } finally {
       setIsSubmitting(false);
     }

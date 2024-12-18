@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../axiosInstance';
 import './BuyRequestPage.css';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
 import { useAuth } from '../../contexts/auth/AuthContext';
@@ -22,12 +23,13 @@ import {
 
 const BuyRequestPage = () => {
   const { theme } = useTheme();
-  const { user, token } = useAuth();
+  const { user, token, logout } = useAuth();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [apiMessage, setApiMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch the products the user has bid on
@@ -44,16 +46,23 @@ const BuyRequestPage = () => {
         setProducts(productsWithSortedBids);
       } catch (error) {
         console.error('Error fetching products:', error);
-        setApiMessage('Failed to fetch products.');
-        setSnackbarSeverity('error');
-        setOpenSnackbar(true);
+
+        // Check for JWT expiration or invalid session and navigate to login
+        if (error.response && (error.response.status === 498 || error.response.status === 440)) {
+          logout();
+          navigate('/login');
+        } else {
+          setApiMessage('Failed to fetch products.');
+          setSnackbarSeverity('error');
+          setOpenSnackbar(true);
+        }
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchProducts();
-  }, [token]);
+  }, [token, navigate, logout]);
 
   // Handle Snackbar close
   const handleCloseSnackbar = () => {

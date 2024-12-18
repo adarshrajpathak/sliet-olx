@@ -9,7 +9,7 @@ import { useAuth } from '../../contexts/auth/AuthContext'; // Import useAuth for
 
 const SellPage = () => {
   const { theme } = useTheme();
-  const { user,token } = useAuth(); // Get the user context
+  const { user,token, logout } = useAuth(); // Get the user context
   const navigate = useNavigate();
 
   // State variables for form fields
@@ -139,14 +139,17 @@ const SellPage = () => {
     } catch (err) {
       console.error('Product listing error:', err);
 
-      // Handle error response
-      if (err.response && err.response.data && err.response.data.message) {
-        setApiMessage(err.response.data.message);
+      // Handle JWT expiration or invalid session
+      if (err.response && (err.response.status === 498 || err.response.status === 440)) {
+        logout();
+        navigate('/login');
       } else {
-        setApiMessage('An unexpected error occurred. Please try again later.');
+        setApiMessage(
+          err.response?.data?.message || 'An unexpected error occurred. Please try again later.'
+        );
+        setSnackbarSeverity('error');
+        setOpenSnackbar(true);
       }
-      setSnackbarSeverity('error');
-      setOpenSnackbar(true);
     } finally {
       setIsLoading(false);
     }

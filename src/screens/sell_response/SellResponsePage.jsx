@@ -6,6 +6,7 @@ import './SellResponsePage.css';
 import Navbar from '../../components/navbar/Navbar';
 import { useTheme } from '../../contexts/theme/ThemeContext';
 import { useAuth } from '../../contexts/auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -22,12 +23,13 @@ import {
 
 const SellResponsePage = () => {
   const { theme } = useTheme();
-  const { user, token } = useAuth();
+  const { user, token, logout } = useAuth();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [apiMessage, setApiMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch the user's products for sale
@@ -43,17 +45,22 @@ const SellResponsePage = () => {
 
         setProducts(productsWithSortedBids);
       } catch (error) {
-        console.error('Error fetching products:', error);
-        setApiMessage('Failed to fetch products.');
-        setSnackbarSeverity('error');
-        setOpenSnackbar(true);
+        // Check for 401 Unauthorized and navigate to login
+        if (error.response && (error.response.status === 498 || error.response.status === 440)) {
+          logout();
+          navigate('/login');
+        } else {
+          setApiMessage('Failed to fetch products.');
+          setSnackbarSeverity('error');
+          setOpenSnackbar(true);
+        }
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchProducts();
-  }, [token]);
+  }, [token, navigate, logout]);
 
   // Handle Snackbar close
   const handleCloseSnackbar = () => {
@@ -79,10 +86,15 @@ const SellResponsePage = () => {
       setSnackbarSeverity('success');
       setOpenSnackbar(true);
     } catch (error) {
-      console.error('Error marking product as sold:', error);
-      setApiMessage('Failed to mark product as sold.');
-      setSnackbarSeverity('error');
-      setOpenSnackbar(true);
+      // Check for 401 Unauthorized and navigate to login
+      if (error.response && (error.response.status === 498 || error.response.status === 440)) {
+        logout();
+        navigate('/login');
+      } else {
+        setApiMessage('Failed to mark product as sold.');
+        setSnackbarSeverity('error');
+        setOpenSnackbar(true);
+      }
     }
   };
 
