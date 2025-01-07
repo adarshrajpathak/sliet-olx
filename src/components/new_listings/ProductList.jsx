@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import ProductCard from '../card/ProductCard';
+import ProductSkeletonCard from '../card/ProductSkeletonCard'; // Import Skeleton Card
 import './ProductList.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -10,11 +11,18 @@ function ProductList({ products }) {
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+  const [loading, setLoading] = useState(true); // State for loading
+
+  useEffect(() => {
+    if (products.length > 0) {
+      setLoading(false); // Set loading to false once data is available
+    }
+  }, [products]);
 
   const scrollLeft = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
-        left: -300, // Adjust based on card width
+        left: -300,
         behavior: 'smooth',
       });
     }
@@ -23,13 +31,12 @@ function ProductList({ products }) {
   const scrollRight = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
-        left: 300, // Adjust based on card width
+        left: 300,
         behavior: 'smooth',
       });
     }
   };
 
-  // Handle arrow visibility based on scroll position
   const handleScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
@@ -42,7 +49,6 @@ function ProductList({ products }) {
     const currentRef = scrollRef.current;
     if (currentRef) {
       currentRef.addEventListener('scroll', handleScroll);
-      // Initial check
       handleScroll();
     }
     return () => {
@@ -77,14 +83,17 @@ function ProductList({ products }) {
           </button>
         )}
         <div className="product-list" ref={scrollRef}>
-          {products.length > 0 ? (
-            products
-            .filter((product) => !product.product_is_sold) // Filter out sold products
-            .map((product) => (
-              <ProductCard key={product._id} product={product} />
+          {loading ? (
+            // Display 5 skeleton cards while loading
+            Array.from({ length: 5 }).map((_, index) => (
+              <ProductSkeletonCard key={index} />
             ))
           ) : (
-            <div>No products available.</div>
+            products
+              .filter((product) => !product.product_is_sold) // Filter out sold products
+              .map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))
           )}
         </div>
       </div>

@@ -1,0 +1,86 @@
+/* Skeleton Card Styling */
+.skeleton {
+  background-color: #f0f0f0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
+  }
+  100% {
+    background-color: #f0f0f0;
+  }
+}
+
+/* Skeleton Tag */
+.skeleton-tag {
+  width: 60px;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 4px;
+  margin: 10px;
+}
+
+/* Skeleton Image */
+.skeleton-image {
+  width: 100%;
+  height: 160px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+/* Skeleton Title */
+.skeleton-title {
+  width: 80%;
+  height: 18px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* Skeleton Price */
+.skeleton-price {
+  width: 50%;
+  height: 18px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* Skeleton Button */
+.skeleton-button {
+  width: 80px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+/* Skeleton Location */
+.skeleton-location {
+  width: 60%;
+  height: 16px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* Skeleton Description */
+.skeleton-description {
+  width: 100%;
+  height: 40px;
+  background-color: #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Mobile Skeleton Button */
+.mobile-action-button .skeleton-button {
+  width: 100%;
+}

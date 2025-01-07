@@ -20,7 +20,7 @@ const Footer = () => {
 
       {/* Section 2: Development Team */}
       <div className="footer-section">
-        <p className="development-team">SuperDev Team</p>
+        <p className="development-team">SuperDev</p>
         <div className="person-gallery">
           
           <div className="person-card">
@@ -30,14 +30,13 @@ const Footer = () => {
             </a>
             <p className="person-name">Adarsh Pathak</p>
           </div>
-
+          {/*
           <div className="person-card">
-            {/* C P Yadav's GitHub Link */}
             <a href="https://www.linkedin.com/in/chandra-prakash-yadav-b22783228/" target="_blank" rel="noopener noreferrer">
               <img src={cpyadavImage} alt="C P Yadav" />
             </a>
             <p className="person-name">C P Yadav</p>
-          </div>
+          </div>*/}
         </div>
       </div>
 
